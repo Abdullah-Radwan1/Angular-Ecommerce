@@ -1,0 +1,61 @@
+<header class="flex justify-evenly items-center p-4 gap-2 bg-white shadow">
+  <!-- Logo -->
+  <h1 class="text-lg font-bold">
+    VOG<span class="text-orange-600">UE-HA</span>VEN
+  </h1>
+
+  <!-- Navigation Links (Hidden on small screens) -->
+  <nav class="hidden md:flex gap-2 font-semibold">
+    <a href="#" class="text-primary">Home</a>
+    <a href="#">Clothing</a>
+    <a href="#">Accessories</a>
+    <a href="#">About</a>
+  </nav>
+
+  <!-- Right Section -->
+  <div class="flex items-center gap-4">
+    <!-- Search (Hidden on small screens) -->
+    <div class="relative">
+      <div
+        class="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none"
+      >
+        <lucide-icon
+          [img]="Search"
+          class="w-4 h-4 text-muted-foreground"
+        ></lucide-icon>
+      </div>
+      <input
+        hlmInput
+        type="text"
+        placeholder="Search"
+        class="border rounded-md focus:outline-none w-28 sm:w-full"
+      />
+    </div>
+
+    <!-- Shopping Bag Icon -->
+    <lucide-icon [img]="ShoppingBag" class="w-6 h-6"></lucide-icon>
+
+    <!-- Mobile Menu Button (Visible only on small screens) -->
+    <button class="md:hidden" [brnMenuTriggerFor]="menu">
+      <lucide-icon [img]="Menu" class="w-6 h-6"></lucide-icon>
+    </button>
+
+    <!-- Dropdown Menu -->
+    <ng-template #menu>
+      <hlm-menu>
+        <hlm-menu-group>
+          <button hlmMenuItem>
+            Home
+            <hlm-menu-shortcut>⇧⌘P</hlm-menu-shortcut>
+          </button>
+          <hlm-menu-separator />
+          <button hlmMenuItem>Clothing</button>
+          <hlm-menu-separator />
+          <button hlmMenuItem>Accessories</button>
+          <hlm-menu-separator />
+          <button hlmMenuItem>About</button>
+        </hlm-menu-group>
+      </hlm-menu>
+    </ng-template>
+  </div>
+</header>
