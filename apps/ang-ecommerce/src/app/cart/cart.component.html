@@ -1,0 +1,77 @@
+<div class="space-y-8 container mx-auto overflow-x-auto">
+  <h1 class="text-3xl text-center pt-4 font-bold">Shopping Cart</h1>
+
+  @if(!cartStore.items().length) {
+  <!-- when there are no cart items -->
+  <div class="text-center py-8">
+    <p>Your <span class="text-orange-500">cart</span> is empty</p>
+    <a routerLink="/products" class="btn btn-primary mt-4">Continue Shopping</a>
+  </div>
+  } @else {
+  <!-- cart view -->
+  <div class="overflow-x-auto">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- for each item -->
+        @for(item of cartStore.items(); track item.id) {
+        <tr>
+          <td>
+            <div class="flex items-center space-x-3">
+              <img
+                class="object-contain w-16 h-16"
+                [src]="item.image"
+                [alt]="item.name"
+              />
+
+              <div>{{ item.name }}</div>
+            </div>
+          </td>
+          <td>${{ item.price | number : '1.2-2' }}</td>
+          <td class="space-x-4">
+            <button (click)="increaseQuantity(item.id)" class="btn">
+              increase
+            </button>
+            <button (click)="decreaseQuantity(item.id)" class="btn">
+              decrease
+            </button>
+          </td>
+          <td>${{ item.price * item.quantity | number : '1.2-2' }}</td>
+          <td>
+            <button
+              (click)="cartStore.removeFromCart(item.id)"
+              class="btn btn-ghost btn-sm"
+            >
+              Remove
+            </button>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flex justify-center gap-4 items-center">
+    <div class="space-x-4">
+      <button (click)="cartStore.clearCart()" class="btn">Clear Cart</button>
+      <a routerLink="/checkout" class="btn btn-primary">Proceed to Checkout</a>
+    </div>
+    <div>
+      <!-- cart total -->
+      <p class="text-xl">
+        Total: ${{ cartStore.totalAmount() | number : '1.2-2' }}
+      </p>
+    </div>
+  </div>
+
+  <!-- end cart view -->
+  }
+</div>

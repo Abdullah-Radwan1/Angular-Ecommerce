@@ -23,7 +23,7 @@ export class ProductsResolver {
       },
     });
   }
-  @Query(() => [Product], { name: 'search' })
+  @Query(() => [Product], { name: 'searchProducts' }) // Changed to match query
   searchProducts(@Args('term', { type: () => String }) term: string) {
     return this.productsService.SearchFunction(term);
   }

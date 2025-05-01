@@ -9,6 +9,9 @@
     },
     {
       "path": "./apps/ecommerce"
+    },
+    {
+      "path": "./apps/ang-ecommerce-e2e"
     }
   ]
 }
