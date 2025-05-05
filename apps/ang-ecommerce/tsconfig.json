@@ -10,6 +10,7 @@
     "noFallthroughCasesInSwitch": true,
     "composite": false,
     "emitDeclarationOnly": false,
+    "declarationMap": false,
     "declaration": false,
     "moduleResolution": "bundler",
     "module": "esnext",

@@ -14,36 +14,38 @@ datasource db {
 }
 
 model Product {
-  id     String     @id @default(uuid())
-  name  String
-  price Int
-  image String
-  description String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id            String      @id @default(uuid())
+  name          String
+  price         Int
+  image         String
+  description   String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
   stripePriceId String
-  isFeatured Boolean @default(false)
-  orderItems OrderItem[]
+  isFeatured    Boolean     @default(false)
+  orderItems    OrderItem[]
 }
 
-model  Order {
-  id    String     @id @default(uuid())
-status OrderStatus @default(PENDING)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  paymentId String?
-  items  OrderItem[]
+model Order {
+  id          String      @id @default(uuid())
+  status      OrderStatus @default(PENDING)
+  totalAmount Int
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  paymentId   String?
+  items       OrderItem[]
 }
 
 model OrderItem {
-  id    String     @id @default(uuid())
-  quantity Int
-  product Product @relation(fields: [productId], references: [id])
+  id        String   @id @default(uuid())
+  quantity  Int
+  product   Product  @relation(fields: [productId], references: [id])
   productId String
-  order Order @relation(fields: [orderId], references: [id])
-  orderId String
+  order     Order    @relation(fields: [orderId], references: [id])
+  orderId   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  price     Int
 }
 
 enum OrderStatus {

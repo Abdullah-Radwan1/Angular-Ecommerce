@@ -6,6 +6,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
 import { ProductsModule } from './products/products.module';
 
+import { OrderModule } from './order/order.module';
+
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -13,8 +15,11 @@ import { ProductsModule } from './products/products.module';
       autoSchemaFile: join(process.cwd(), 'apps/ecommerce/dist/schema.gql'),
     }),
     ProductsModule,
+
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {}
+//done
