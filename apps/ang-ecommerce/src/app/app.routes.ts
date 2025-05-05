@@ -22,4 +22,11 @@ export const appRoutes: Route[] = [
       return mod.ProductsComponent;
     },
   },
+  {
+    path: 'checkout',
+    loadComponent: async () => {
+      const mod = await import('../checkout/checkout.component');
+      return mod.CheckoutComponent;
+    },
+  },
 ];

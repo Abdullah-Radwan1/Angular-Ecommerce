@@ -11,9 +11,9 @@ import { cartStore } from '../stores/cart.store';
 })
 export class CheckoutComponent {
   cartStore = inject(cartStore);
-  stripeServvice = inject(StripeService);
+  stripeService = inject(StripeService);
   checkout() {
-    this.stripeServvice.createCheckoutSession().subscribe(({ url }) => {
+    this.stripeService.createCheckoutSession().subscribe(({ url }) => {
       window.location.href = url;
     });
   }

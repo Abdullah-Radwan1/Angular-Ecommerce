@@ -10,12 +10,19 @@ export class StripeService {
   http = inject(HttpClient);
   createCheckoutSession() {
     const items = this.store.items();
-    const totalPrice = this.store.totalAmount();
+    const totalAmount = this.store.totalAmount();
 
     return this.http.post<{ url: string }>(
       'http://localhost:3000/api/checkout',
       {
-        products: this.store.items(),
+        items: items.map((item) => ({
+          productId: item.id,
+          name: item.name,
+          price: item.price,
+          stripePriceId: item.stripePriceId,
+          quantity: item.quantity,
+        })),
+        totalAmount,
       }
     );
   }
