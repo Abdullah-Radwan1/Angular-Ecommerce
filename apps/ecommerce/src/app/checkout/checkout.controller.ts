@@ -8,7 +8,8 @@ export class CheckoutController {
 
   @Post()
   async create(@Body() createCheckoutDto: CreateCheckoutDto) {
-    const session = await this.checkoutService.create(createCheckoutDto);
+    const session = await this.checkoutService.createOrder(createCheckoutDto);
+
     if (!session) {
       throw new Error('Session creation failed');
     }

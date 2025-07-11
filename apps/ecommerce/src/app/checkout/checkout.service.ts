@@ -11,7 +11,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 @Injectable()
 export class CheckoutService {
   constructor(private readonly orderService: OrdersService) {}
-  async create(createCheckoutDto: CreateCheckoutDto) {
+  async createOrder(createCheckoutDto: CreateCheckoutDto) {
     const order = this.orderService.create({
       items: createCheckoutDto.items,
       totalAmount: createCheckoutDto.totalAmount,

@@ -12,7 +12,7 @@ export class OrdersService {
     return this.prisma.order.create({
       data: {
         totalAmount,
-        status: 'PENDING',
+        status: 'COMPLETED',
         items: {
           create: items.map((item) => ({
             quantity: item.quantity,
