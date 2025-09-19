@@ -1,0 +1,30 @@
+<nav class="bg-base-100 shadow-md flex justify-evenly items-center gap-2 py-4">
+  <h1 class="text-lg font-bold">VOG<span class="text-orange-600">UE-HA</span>VEN</h1>
+
+  <div class="flex gap-2 items-center">
+    <input type="text" placeholder="Search..." class="input input-bordered" />
+
+    <button class="btn btn-square btn-ghost">
+      <lucide-angular [img]="Search"></lucide-angular>
+    </button>
+    <button routerLink="/cart" class="btn relative btn-square btn-ghost">
+      <lucide-angular [img]="ShoppingBag"></lucide-angular>
+      <span class="badge absolute bottom-8 left-8 badge-sm badge-primary">{{
+        cartStore.totalItems()
+      }}</span>
+    </button>
+    <div class="dropdown dropdown-end">
+      <label tabindex="0" class="btn btn-ghost btn-square">
+        <lucide-angular [img]="Menu"></lucide-angular>
+      </label>
+      <ul
+        tabindex="0"
+        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+      >
+        <li><a>Profile</a></li>
+        <li><a routerLink="/products">Products</a></li>
+        <li><a>Logout</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
