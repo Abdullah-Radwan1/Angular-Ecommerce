@@ -24,5 +24,3 @@ type Query {
   products: [Product!]!
   searchProducts(term: String!): [Product!]!
 }
-# //test
-# change 3

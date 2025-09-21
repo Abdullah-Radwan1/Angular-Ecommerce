@@ -14,7 +14,7 @@ export class StripeService {
 
     return this.http.post<{ url: string }>(
       //todo
-      'http://localhost:3000/api/checkout',
+      'http://localhost:3000/checkout',
       {
         items: items.map((item) => ({
           productId: item.id,

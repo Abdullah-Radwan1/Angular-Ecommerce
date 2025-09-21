@@ -30,7 +30,11 @@ export class ProductsComponent {
     this.productStore.loadProducts();
     afterNextRender(() => {
       this.searchSubject
-        .pipe(debounceTime(500), distinctUntilChanged(), this.destroy())
+        .pipe(
+          debounceTime(500), // استنى 0.5 ثانية بعد ما يخلص كتابة
+          distinctUntilChanged(), // متنفذش لو الكلمة متغيرتش
+          this.destroy() // الغي الاشتراك لما الكومبوننت يتشال
+        )
         .subscribe((term) => {
           console.log(term);
           this.productStore.searchProducts(term);

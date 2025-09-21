@@ -8,7 +8,7 @@ export class OrderService {
   constructor(private prisma: PrismaService) {}
 
   create(createOrderDto: CreateOrderDto) {
-    this.prisma.order.create({
+    return this.prisma.order.create({
       data: {
         items: {
           create: createOrderDto.items.map((item) => ({
