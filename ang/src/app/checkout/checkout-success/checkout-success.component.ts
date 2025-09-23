@@ -1,20 +1,19 @@
 import { afterNextRender, Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { OrderStore } from '../../stores/order.store';
-import { ActivatedRoute } from '@angular/router';
-import { OrderDetailComponent } from '../../orders/components/order-detail/order-detail.component';
-import { CartStore } from '../../stores/cart.store';
+import { OrderStore } from '../../../stores/order.store';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { OrderDetailComponent } from './order/order-detail.component';
+import { cartStore } from '../../../stores/cart.store';
 
 @Component({
   selector: 'app-checkout-success',
-  imports: [CommonModule, OrderDetailComponent],
-  templateUrl: './checkout-success.component.html',
-  styleUrl: './checkout-success.component.scss',
+  imports: [CommonModule, OrderDetailComponent, RouterModule],
+  templateUrl: './checkout-success.html',
 })
 export class CheckoutSuccessComponent implements OnInit {
   orderStore = inject(OrderStore);
   route = inject(ActivatedRoute);
-  cartStore = inject(CartStore);
+  cartStore = inject(cartStore);
 
   constructor() {
     afterNextRender(() => {

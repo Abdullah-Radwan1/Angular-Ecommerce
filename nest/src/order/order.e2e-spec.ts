@@ -6,15 +6,15 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
 // Import the controller & service we are testing
 import { OrderController } from './order.controller';
-import { OrderService } from './order.service';
+import { OrdersService } from './order.service';
 // Import the enum from Prisma for status values
 import { OrderStatus } from '@prisma/client';
 describe('OrderController (e2e)', () => {
   let app: INestApplication; // This will hold our running NestJS app
 
-  // Mock implementation of the OrderService
+  // Mock implementation of the OrdersService
   // Instead of calling the real DB, we return fake data
-  const mockOrderService = {
+  const mockOrdersService = {
     create: jest.fn().mockImplementation((dto) => ({
       id: 1, // Pretend the DB assigned id=1
       ...dto, // Spread back the DTO into the response
@@ -28,9 +28,9 @@ describe('OrderController (e2e)', () => {
       controllers: [OrderController],
       providers: [
         {
-          provide: OrderService,
-          // When something asks for OrderService...
-          useValue: mockOrderService, // ...give it the mock instead of the real service
+          provide: OrdersService,
+          // When something asks for OrdersService...
+          useValue: mockOrdersService, // ...give it the mock instead of the real service
         },
       ],
     }).compile();

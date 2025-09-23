@@ -2,10 +2,44 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+input CreateOrderInput {
+  items: [OrderItemInput!]!
+  totalAmount: Float!
+}
+
 """
 A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
 """
 scalar DateTime
+
+type Mutation {
+  createOrder(createOrderInput: CreateOrderInput!): Order!
+}
+
+type Order {
+  createdAt: DateTime!
+  id: ID!
+  items: [OrderItem!]!
+  paymentId: String
+  status: String!
+  totalAmount: Float!
+  updatedAt: DateTime!
+}
+
+type OrderItem {
+  id: String!
+  orderId: String!
+  price: Float!
+  product: Product!
+  productId: String!
+  quantity: Int!
+}
+
+input OrderItemInput {
+  price: Float!
+  productId: String!
+  quantity: Int!
+}
 
 type Product {
   createdAt: DateTime!
@@ -20,6 +54,8 @@ type Product {
 }
 
 type Query {
+  order(id: String!): Order!
+  orders: [Order!]!
   product(id: String!): Product!
   products: [Product!]!
   searchProducts(term: String!): [Product!]!

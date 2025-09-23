@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCheckoutDto } from './dto/create-checkout.dto';
 import { Stripe } from 'stripe';
-import { OrderService } from 'src/order/order.service';
+import { OrdersService } from 'src/order/order.service';
 
 const stripeSecret = process.env.STRIPE_SECRET;
 
@@ -13,7 +13,7 @@ const stripe = new Stripe(stripeSecret);
 
 @Injectable()
 export class CheckoutService {
-  constructor(private ordersService: OrderService) {}
+  constructor(private ordersService: OrdersService) {}
   async create(createCheckoutDto: CreateCheckoutDto) {
     const order = await this.ordersService.create({
       items: createCheckoutDto.items,

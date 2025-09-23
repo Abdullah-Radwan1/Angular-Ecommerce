@@ -4,7 +4,7 @@ import { UpdateOrderDto } from './dto/update-order.dto';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Injectable()
-export class OrderService {
+export class OrdersService {
   constructor(private prisma: PrismaService) {}
 
   create(createOrderDto: CreateOrderDto) {
@@ -26,8 +26,11 @@ export class OrderService {
     return this.prisma.order.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} order`;
+  findOne(id: string) {
+    return this.prisma.order.findUnique({
+      where: { id },
+      include: { items: { include: { product: true } } },
+    });
   }
 
   findUserOrders(userId: string, take: number, skip: number) {

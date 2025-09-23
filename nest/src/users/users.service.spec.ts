@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { OrderService } from '../order/order.service';
+import { OrdersService } from '../order/order.service';
 import { PrismaService } from '../prisma/prisma.service'; // adjust path
 
-describe('OrderService', () => {
-  let service: OrderService;
+describe('OrdersService', () => {
+  let service: OrdersService;
 
   // Create a fake PrismaService
   const mockPrisma = {
@@ -16,7 +16,7 @@ describe('OrderService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        OrderService,
+        OrdersService,
         {
           provide: PrismaService,
           useValue: mockPrisma,
@@ -24,7 +24,7 @@ describe('OrderService', () => {
       ],
     }).compile();
 
-    service = module.get<OrderService>(OrderService);
+    service = module.get<OrdersService>(OrdersService);
   });
 
   it('should be defined', () => {

@@ -7,6 +7,7 @@ import {
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { OrderStatus } from '@prisma/client';
+import { Field, InputType, Float, Int } from '@nestjs/graphql';
 
 export class OrderItemDto {
   productId!: string;
@@ -35,4 +36,28 @@ export class CreateOrderDto {
   items!: OrderItemDto[];
   // Converts raw JSON objects into actual OrderItemDto instances before validation runs.
   //Also handles type conversion — for example, "5" (string) can be transformed to 5 (number) if needed
+}
+/////////from here it is graphql types//////////////
+@InputType()
+export class OrderItemInput {
+  @Field(() => String)
+  productId!: string;
+
+  @Field(() => Int)
+  quantity!: number;
+
+  @Field(() => Float)
+  price!: number;
+}
+
+@InputType()
+export class CreateOrderInput {
+  @Field(() => [OrderItemInput])
+  items!: OrderItemInput[];
+  status: 'PENDING';
+  @Field(() => Float)
+  totalAmount!: number;
+
+  // @Field(() => String)
+  // token!: string;
 }

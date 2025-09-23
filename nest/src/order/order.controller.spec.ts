@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { OrderController } from './order.controller';
-import { OrderService } from './order.service';
+import { OrdersService } from './order.service';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { OrderStatus } from '@prisma/client';
 describe('OrderController', () => {
   let controller: OrderController;
-  let service: OrderService;
+  let service: OrdersService;
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [OrderController],
       providers: [
         {
-          provide: OrderService,
+          provide: OrdersService,
           useValue: {
             create: jest.fn().mockResolvedValue({
               id: 1,
@@ -40,7 +40,7 @@ describe('OrderController', () => {
     }).compile();
 
     controller = module.get<OrderController>(OrderController);
-    service = module.get<OrderService>(OrderService);
+    service = module.get<OrdersService>(OrdersService);
   });
 
   it('should create an order', async () => {
