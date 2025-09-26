@@ -20,9 +20,9 @@ export class ProductsComponent {
     this.searchSubject.next(term);
   }
   addToCart(product: ProductDto) {
-    this.cardStore.addToCart(product);
+    this.cartStore.addToCart(product);
   }
-  cardStore = inject(cartStore);
+  cartStore = inject(cartStore);
   productStore = inject(productStore);
   searchSubject = new Subject<string>();
   destroy = untilDestroyed();

@@ -1,1 +1,47 @@
-<!-- <img class="h-full min-w-full" src="/banner.jpg" alt="" /> -->
+<main class="lg:px-24 p-12">
+  <!-- categories  -->
+  <section class="flex items-center gap-3 text-gray-600 mb-4">
+    <div class="flex items-center gap-2">
+      <img src="/categories.png" class="w-[30px]" alt="categories" />
+      <h5 class="text-lg font-semibold">Categories</h5>
+    </div>
+    <div>|</div>
+    <div class="flex items-center gap-4">
+      <a href="/products?category=perfumes" class="hover:underline">Perfumes</a>
+      <a href="/products?category=body-spray" class="hover:underline">Body Spray</a>
+      <a href="/products?category=air-freshener" class="hover:underline">Air Freshener</a>
+    </div>
+  </section>
+
+  <div class="grid grid-cols-3 gap-4">
+    <img class="col-span-3 lg:col-span-2 rounded-2xl" src="/banner.jpg" alt="banner" />
+    <img class="col-span-1 rounded-2xl hidden lg:block h-full" src="/boss.png" alt="sidebar" />
+  </div>
+  <!-- categories -->
+  <section class="py-16 px-4">
+    <h2 class="text-4xl font-extrabold text-center text-gray-800 mb-12 relative">
+      Explore Popular Categories
+    </h2>
+
+    <div class="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-10">
+      @for (category of categories; track category.name) {
+      <div class="category-card group text-center transition-transform transform hover:scale-105">
+        <div
+          class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+        >
+          <img [src]="category.imageUrl" [alt]="category.name" class="w-full h-full object-cover" />
+        </div>
+        <h3 class="text-lg sm:text-xl font-semibold text-gray-800 transition-colors">
+          {{ category.name }}
+        </h3>
+      </div>
+      }
+    </div>
+  </section>
+
+  <section>
+    @for (product of productStore.products(); track product.id) {
+    <app-product-card [product]="product" />
+    }
+  </section>
+</main>

@@ -32,6 +32,7 @@ model Product {
   description String
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
+  Category    Category
   isFeatured  Boolean     @default(false)
   orderItems  OrderItem[]
 }
@@ -63,4 +64,10 @@ enum OrderStatus {
   PENDING
   COMPLETED
   CANCELLED
+}
+
+enum Category {
+  PERFUMES
+  BODY_SPRAY
+  AIR_FRESHENER
 }
