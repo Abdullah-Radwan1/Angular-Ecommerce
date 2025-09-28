@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { Apollo, gql } from 'apollo-angular';
 import { catchError, EMPTY, map } from 'rxjs';
-import { ProductDto } from '../utils/product.schema';
+import { featuredDto, ProductDto } from '../utils/product.schema';
 
 const GET_PRODUCTS = gql`
   query GetProducts {
@@ -26,10 +26,20 @@ const SEARCH_PRODUCTS = gql`
     }
   }
 `;
-
+const FEATURED_PRODUCTS = gql`
+  query featuredProducts {
+    featuredProducts {
+      id
+      name
+      description
+      image
+      price
+    }
+  }
+`;
 export interface ProductState {
   products: ProductDto[];
-  featuredProducts: ProductDto[];
+  featuredProducts: featuredDto[];
   loading: boolean;
   error: string | null;
 }
@@ -79,6 +89,20 @@ export const productStore = signalStore(
             });
 
             return EMPTY;
+          })
+        )
+        .subscribe();
+    },
+    // ✅ rename the method to avoid shadowing
+    loadFeaturedProducts: () => {
+      patchState(store, { loading: true, error: null });
+      apollo
+        .watchQuery<{ featuredProducts: featuredDto[] }>({
+          query: FEATURED_PRODUCTS,
+        })
+        .valueChanges.pipe(
+          map(({ data }) => {
+            patchState(store, { featuredProducts: data.featuredProducts, loading: false });
           })
         )
         .subscribe();

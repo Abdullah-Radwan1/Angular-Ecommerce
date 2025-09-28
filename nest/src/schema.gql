@@ -54,6 +54,7 @@ type Product {
 }
 
 type Query {
+  featuredProducts: [Product!]!
   order(id: String!): Order!
   orders: [Order!]!
   product(id: String!): Product!

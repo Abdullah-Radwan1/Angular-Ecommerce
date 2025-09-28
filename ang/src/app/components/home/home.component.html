@@ -12,7 +12,7 @@
       <a href="/products?category=air-freshener" class="hover:underline">Air Freshener</a>
     </div>
   </section>
-
+  <!-- banner -->
   <div class="grid grid-cols-3 gap-4">
     <img class="col-span-3 lg:col-span-2 rounded-2xl" src="/banner.jpg" alt="banner" />
     <img class="col-span-1 rounded-2xl hidden lg:block h-full" src="/boss.png" alt="sidebar" />
@@ -38,10 +38,10 @@
       }
     </div>
   </section>
-
-  <section>
-    @for (product of productStore.products(); track product.id) {
-    <app-product-card [product]="product" />
+  <!-- featured products -->
+  <section class="grid grid-cols-1 mx-auto sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+    @for (product of productStore.featuredProducts(); track product.id) {
+    <app-featured-card [product]="product" />
     }
   </section>
 </main>

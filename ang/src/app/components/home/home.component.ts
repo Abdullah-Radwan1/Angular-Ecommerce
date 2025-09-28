@@ -1,12 +1,11 @@
 import { Component, inject } from '@angular/core';
 import { productStore } from '../../../stores/product.store';
-import { ProductCardComponent } from '../product-card/product-card.component';
-import { ProductDto } from '../../../utils/product.schema';
 import { cartStore } from '../../../stores/cart.store';
 import { POPULAR_CATEGORIES, Category } from '../../../utils/categories-data';
+import { FeaturedCard } from '../featured-card/featured-card';
 @Component({
   selector: 'app-home',
-  imports: [ProductCardComponent],
+  imports: [FeaturedCard],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
@@ -15,10 +14,8 @@ export class HomeComponent {
   cartStore = inject(cartStore);
   categories: Category[] = POPULAR_CATEGORIES; // use the imported data
 
-  addToCart(product: ProductDto) {
-    this.cartStore.addToCart(product);
-  }
   constructor() {
-    this.productStore.loadProducts();
+    this.productStore.loadFeaturedProducts(); // ✅ calls the loader
+    // ✅ now this logs the SIGNAL state (the array), not the void-returning method
   }
 }

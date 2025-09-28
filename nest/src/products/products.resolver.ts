@@ -7,7 +7,7 @@ import { ProductsService } from './products.service';
 export class ProductsResolver {
   constructor(
     private Prisma: PrismaService,
-    private productsService: ProductsService
+    private productsService: ProductsService,
   ) {}
 
   @Query(() => [Product], { name: 'products' })
@@ -26,6 +26,14 @@ export class ProductsResolver {
   @Query(() => [Product], { name: 'searchProducts' }) // Changed to match query
   searchProducts(@Args('term', { type: () => String }) term: string) {
     return this.productsService.SearchFunction(term);
+  }
+
+  @Query(() => [Product], { name: 'featuredProducts' }) // Changed to match query
+  featuredProducts() {
+    return this.Prisma.product.findMany({
+      where: { Category: 'PERFUMES' },
+      take: 4,
+    });
   }
 
   // @Mutation(() => Product)
