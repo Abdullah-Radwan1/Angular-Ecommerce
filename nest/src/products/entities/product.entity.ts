@@ -1,4 +1,4 @@
-import { ObjectType, Field, Float } from '@nestjs/graphql';
+import { ObjectType, Field, Float, GraphQLISODateTime } from '@nestjs/graphql';
 
 @ObjectType()
 export class Product {
@@ -17,15 +17,18 @@ export class Product {
   @Field()
   image!: string;
 
-  @Field()
-  stripePriceId!: string;
+  @Field({ nullable: true })
+  stripePriceId?: string;
 
   @Field(() => Boolean)
   isFeatured!: boolean;
 
-  @Field()
+  @Field({ nullable: true })
+  category?: string;
+
+  @Field(() => GraphQLISODateTime)
   createdAt!: Date;
 
-  @Field()
+  @Field(() => GraphQLISODateTime)
   updatedAt!: Date;
 }

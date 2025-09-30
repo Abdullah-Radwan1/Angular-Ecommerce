@@ -3,6 +3,7 @@ import { Product } from './entities/product.entity';
 
 import { PrismaService } from '../prisma/prisma.service';
 import { ProductsService } from './products.service';
+import { Category } from '@prisma/client';
 @Resolver(() => Product)
 export class ProductsResolver {
   constructor(
@@ -17,7 +18,7 @@ export class ProductsResolver {
 
   @Query(() => Product, { name: 'product' })
   findOne(@Args('id', { type: () => String }) id: string) {
-    return this.Prisma.product.findFirst({
+    return this.Prisma.product.findUnique({
       where: {
         id,
       },
@@ -35,33 +36,11 @@ export class ProductsResolver {
       take: 4,
     });
   }
-
-  // @Mutation(() => Product)
-  // createProduct(
-  //   @Args('createProductInput') createProductInput: CreateProductInput
-  // ) {
-  //   return this.Prisma.product.create({
-  //     data: createProductInput,
-  //   });
-  // }
-  // @Mutation(() => Product)
-  // updateProduct(
-  //   @Args('updateProductInput') updateProductInput: UpdateProductInput
-  // ) {
-  //   return this.Prisma.product.update({
-  //     where: {
-  //       id: updateProductInput.id,
-  //     },
-  //     data: updateProductInput,
-  //   });
-  // }
-
-  // @Mutation(() => Product)
-  // removeProduct(@Args('id', { type: () => String }) id: string) {
-  //   return this.Prisma.product.delete({
-  //     where: {
-  //       id,
-  //     },
-  //   });
-  // }
+  @Query(() => [Product], { name: 'relatedProducts' }) // Changed to match query
+  relatedProducts(@Args('category', { type: () => String }) term: Category) {
+    return this.Prisma.product.findMany({
+      where: { Category: term },
+      take: 4,
+    });
+  }
 }

@@ -1,5 +1,6 @@
 <div
-  class="card h-full shadow-xl hover:-translate-y-2 duration-300 rounded-xl overflow-hidden bg-white relative"
+  class="card h-full shadow-xl hover:-translate-y-2 duration-300 rounded-xl overflow-hidden bg-white relative cursor-pointer"
+  [routerLink]="['/product', product().id]"
 >
   <!-- Sale badge -->
   <div
@@ -9,35 +10,23 @@
   </div>
 
   <!-- Product image with gradient purple background -->
-  <figure
-    class="p-4 bg-gradient-to-br from-purple-700 to-purple-900 flex items-center justify-center"
-  >
+  <figure class="p-4 bg-gradient-to-br from-purple-500 to-white flex items-center justify-center">
     <img class="max-h-48 w-full object-contain" [src]="product().image" [alt]="product().name" />
   </figure>
 
   <!-- Card body -->
   <div class="card-body p-4">
-    <!-- Product name -->
     <h2 class="card-title text-lg font-semibold line-clamp-1 text-gray-800">
       {{ product().name }}
     </h2>
 
-    <!-- Product description -->
     <p class="text-gray-600 text-sm mt-2 line-clamp-3">
       {{ product().description || 'No description available.' }}
     </p>
 
-    <!-- Prices -->
     <div class="flex items-center gap-3 mt-3">
-      <!-- Old price -->
       <span class="line-through text-gray-400 text-sm">$20</span>
-      <!-- Current price -->
       <span class="text-xl text-red-600 font-bold">${{ product().price }}</span>
-    </div>
-
-    <!-- Add to Cart button -->
-    <div class="card-actions mt-4">
-      <button class="btn w-full text-purple-700 font-bold hover:opacity-90">Add to Cart</button>
     </div>
   </div>
 </div>

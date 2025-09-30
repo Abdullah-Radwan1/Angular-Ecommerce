@@ -37,15 +37,45 @@ const FEATURED_PRODUCTS = gql`
     }
   }
 `;
+const GET_PRODUCT_BY_ID = gql`
+  query product($id: String!) {
+    product(id: $id) {
+      id
+      name
+      description
+      price
+      image
+      category
+    }
+  }
+`;
+const GET_RELATED_PRODUCTS = gql`
+  query relatedProducts($category: String!) {
+    relatedProducts(category: $category) {
+      name
+      id
+      name
+      description
+      price
+      image
+      category
+    }
+  }
+`;
 export interface ProductState {
   products: ProductDto[];
   featuredProducts: featuredDto[];
+  relatedProducts: ProductDto[];
   loading: boolean;
   error: string | null;
+  selectedProduct: ProductDto | null; // ✅ new
 }
 const initialState: ProductState = {
   products: [],
+  relatedProducts: [],
   featuredProducts: [],
+  selectedProduct: null, // ✅ initialize
+
   loading: false,
   error: null,
 };
@@ -93,6 +123,43 @@ export const productStore = signalStore(
         )
         .subscribe();
     },
+    loadProductById: (id: string) => {
+      patchState(store, { loading: true, error: null });
+      apollo
+        .query<{ product: ProductDto }>({ query: GET_PRODUCT_BY_ID, variables: { id } })
+        .pipe(
+          map(({ data }) => {
+            patchState(store, {
+              error: null,
+              loading: false,
+              selectedProduct: data.product,
+            });
+          }),
+          catchError((error) => {
+            patchState(store, {
+              error: error.message,
+              loading: false,
+            });
+
+            return EMPTY;
+          })
+        )
+        .subscribe();
+    },
+    loadRelatedProducts: (category: string) => {
+      patchState(store, { loading: true });
+      apollo
+        .query<{ products: ProductDto[] }>({
+          query: GET_RELATED_PRODUCTS,
+          variables: { category },
+        })
+        .pipe(
+          map(({ data }) => {
+            patchState(store, { loading: false, relatedProducts: data.products });
+          })
+        )
+        .subscribe();
+    },
     // ✅ rename the method to avoid shadowing
     loadFeaturedProducts: () => {
       patchState(store, { loading: true, error: null });
@@ -106,6 +173,9 @@ export const productStore = signalStore(
           })
         )
         .subscribe();
+    },
+    clearSelectedProduct: () => {
+      patchState(store, { selectedProduct: null, loading: true });
     },
   }))
 );

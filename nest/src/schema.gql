@@ -42,6 +42,7 @@ input OrderItemInput {
 }
 
 type Product {
+  category: String
   createdAt: DateTime!
   description: String!
   id: String!
@@ -49,7 +50,7 @@ type Product {
   isFeatured: Boolean!
   name: String!
   price: Float!
-  stripePriceId: String!
+  stripePriceId: String
   updatedAt: DateTime!
 }
 
@@ -59,5 +60,6 @@ type Query {
   orders: [Order!]!
   product(id: String!): Product!
   products: [Product!]!
+  relatedProducts(category: String!): [Product!]!
   searchProducts(term: String!): [Product!]!
 }

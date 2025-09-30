@@ -43,4 +43,12 @@ export const appRoutes: Routes = [
       return mod.CheckoutSuccessComponent;
     },
   },
+
+  {
+    path: 'product/:id',
+    loadComponent: async () => {
+      const mod = await import('./product-details/product-details.component');
+      return mod.ProductDetails;
+    },
+  },
 ];
