@@ -12,6 +12,7 @@ const GET_PRODUCTS = gql`
       description
       price
       image
+      Category
     }
   }
 `;
@@ -23,6 +24,7 @@ const SEARCH_PRODUCTS = gql`
       description
       price
       image
+      Category
     }
   }
 `;
@@ -45,20 +47,20 @@ const GET_PRODUCT_BY_ID = gql`
       description
       price
       image
-      category
+      Category
     }
   }
 `;
 const GET_RELATED_PRODUCTS = gql`
-  query relatedProducts($category: String!) {
-    relatedProducts(category: $category) {
+  query relatedProducts($category: Category!) {
+    relatedProducts(Category: $category) {
       name
       id
       name
       description
       price
       image
-      category
+      Category
     }
   }
 `;
@@ -146,16 +148,16 @@ export const productStore = signalStore(
         )
         .subscribe();
     },
-    loadRelatedProducts: (category: string) => {
-      patchState(store, { loading: true });
+    // In your store
+    loadRelatedProducts(category: string) {
       apollo
-        .query<{ products: ProductDto[] }>({
+        .query<{ relatedProducts: ProductDto[] }>({
           query: GET_RELATED_PRODUCTS,
-          variables: { category },
+          variables: { category }, // e.g., "PERFUMES"
         })
         .pipe(
           map(({ data }) => {
-            patchState(store, { loading: false, relatedProducts: data.products });
+            patchState(store, { relatedProducts: data.relatedProducts });
           })
         )
         .subscribe();

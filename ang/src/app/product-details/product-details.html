@@ -57,7 +57,16 @@
       </div>
     </div>
   </div>
+
   <!-- related products  -->
 
+  <button class="text-2xl font-bold btn-primary btn flex text-center my-8 mx-auto">
+    Related Products
+  </button>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-fr">
+    @for (product of productStore.relatedProducts(); track product.id) {
+    <app-product-card (addToCart)="addToCart($event)" [product]="product" />
+    }
+  </div>
   }
 </main>

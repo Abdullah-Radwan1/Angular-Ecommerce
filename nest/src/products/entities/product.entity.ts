@@ -1,4 +1,5 @@
 import { ObjectType, Field, Float, GraphQLISODateTime } from '@nestjs/graphql';
+import { Category as PrismaCategory } from '@prisma/client';
 
 @ObjectType()
 export class Product {
@@ -23,8 +24,9 @@ export class Product {
   @Field(() => Boolean)
   isFeatured!: boolean;
 
-  @Field({ nullable: true })
-  category?: string;
+  // ✅ Use the registered enum type
+  @Field(() => PrismaCategory, { nullable: true })
+  Category?: PrismaCategory; // make sure the property name matches Prisma model exactly
 
   @Field(() => GraphQLISODateTime)
   createdAt!: Date;

@@ -2,6 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+"""Product category enum"""
+enum Category {
+  AIR_FRESHENER
+  BODY_SPRAY
+  PERFUMES
+}
+
 input CreateOrderInput {
   items: [OrderItemInput!]!
   totalAmount: Float!
@@ -42,7 +49,7 @@ input OrderItemInput {
 }
 
 type Product {
-  category: String
+  Category: Category
   createdAt: DateTime!
   description: String!
   id: String!
@@ -60,6 +67,6 @@ type Query {
   orders: [Order!]!
   product(id: String!): Product!
   products: [Product!]!
-  relatedProducts(category: String!): [Product!]!
+  relatedProducts(Category: Category!): [Product!]!
   searchProducts(term: String!): [Product!]!
 }

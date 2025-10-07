@@ -1,7 +1,7 @@
 // libs/shared/product.schema.ts
 
 import { z } from 'zod';
-const ProductCategory = z.enum(['PERFUMES', 'BODY_SPRAY', 'AIR_FRESHENER']).optional();
+const ProductCategory = z.enum(['PERFUMES', 'BODY_SPRAY', 'AIR_FRESHENER']);
 const ProductSchema = z.object({
   id: z.string().uuid(),
   name: z.string(),
@@ -10,7 +10,7 @@ const ProductSchema = z.object({
   description: z.string(),
   isFeatured: z.boolean(),
   stripePriceId: z.string().optional(),
-  category: ProductCategory,
+  Category: ProductCategory!,
 });
 
 const featuredSchema = z.object({

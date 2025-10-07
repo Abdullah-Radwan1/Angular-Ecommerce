@@ -28,17 +28,18 @@ export class ProductDetails implements OnDestroy {
     // Subscribe to changes in the route parameters (e.g., /product/:id)
     // 'takeUntil(this.destroy$)' ensures the subscription is automatically unsubscribed when the component is destroyed
     this.route.paramMap.pipe(takeUntil(this.destroy$)).subscribe((params) => {
-      // Get the 'id' parameter from the current route
       const id = params.get('id');
-      console.log(id);
-      if (id) {
-        // Immediately clear the previously selected product from the store
-        // This prevents the old product from flashing on the screen
-        this.productStore.clearSelectedProduct();
 
-        // Load the new product based on the current ID
-        this.productStore.loadProductById('cm84perfume00003');
-      }
+      this.route.queryParamMap.pipe(takeUntil(this.destroy$)).subscribe((queryParams) => {
+        const Category = queryParams.get('Category') || 'PERFUMES';
+        if (id && Category) {
+          this.productStore.clearSelectedProduct();
+          this.productStore.loadProductById(id);
+          this.productStore.loadRelatedProducts(Category);
+
+          console.log(this.productStore.loadProductById(id));
+        }
+      });
     });
   }
 
