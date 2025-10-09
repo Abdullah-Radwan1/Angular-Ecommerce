@@ -1,14 +1,15 @@
 <div
-  [routerLink]="['/product', product().id]"
-  [queryParams]="{ Category: product().Category }"
-  class="card h-full shadow-xl hover:-translate-y-2 hover:cursor-pointer duration-200"
+  class="card h-full shadow-xl hover:-translate-y-2 hover:cursor-pointer transition duration-200"
 >
-  <figure>
+  <figure
+    [routerLink]="['/product', product().id]"
+    [queryParams]="{ Category: product().Category }"
+  >
     <img class="max-h-48" [src]="product().image" [alt]="product().name" />
   </figure>
   <div class="card-body">
     <h2 class="card-title">{{ product().name }}</h2>
-    <p>{{ product().description }}</p>
+    <p class="line-clamp-3">{{ product().description }}</p>
     <div class="card-actions justify-between items-center">
       <span class="text-xl font-bold">${{ product().price }}</span>
       <button (click)="onAddToCart(product())" class="btn btn-primary">Add to Cart</button>

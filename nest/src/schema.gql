@@ -4,9 +4,11 @@
 
 """Product category enum"""
 enum Category {
-  AIR_FRESHENER
-  BODY_SPRAY
+  ACCESSORIES
+  ELECTRONICS
+  HOODIES
   PERFUMES
+  SNEAKERS
 }
 
 input CreateOrderInput {

@@ -68,6 +68,8 @@ enum OrderStatus {
 
 enum Category {
   PERFUMES
-  BODY_SPRAY
-  AIR_FRESHENER
+  SNEAKERS
+  ACCESSORIES
+  ELECTRONICS
+  HOODIES
 }

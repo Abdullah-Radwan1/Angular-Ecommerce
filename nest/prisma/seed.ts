@@ -1,236 +1,199 @@
 import { db } from './db';
 import { Category } from '@prisma/client';
+
 async function main() {
   console.log('Seeding products...');
 
   const products = [
-    // Perfumes
     {
       id: 'cm84perfume00001',
       name: '1 Million by Paco Rabanne',
       description:
-        'A bold and luxurious fragrance with notes of blood mandarin, cinnamon, and leather. Perfect for making a statement.',
-      image: '/perfumes/1_million.png',
+        'A bold and luxurious fragrance blending notes of blood mandarin, cinnamon, and leather. Designed for confident men who appreciate timeless elegance with a modern edge. Perfect for both day and evening wear, leaving a lasting impression.',
+      image: '/products/1_million.png',
       price: 120,
+      isFeatured: true,
       Category: Category.PERFUMES,
     },
     {
       id: 'cm84perfume00002',
-      name: 'Amouage Interlude',
+      name: 'Amouage Reflection Man',
       description:
-        'An opulent oriental fragrance with smoky incense, amber, and spicy undertones. A signature scent of sophistication.',
-      image: '/perfumes/amouage.png',
-      price: 250,
+        'An exquisite fragrance that combines the freshness of rosemary and orange blossom with warm woody undertones. Reflection Man embodies sophistication and calm power, making it ideal for formal occasions or intimate evenings.',
+      image: '/products/amouage.png',
+      price: 260,
+      isFeatured: false,
       Category: Category.PERFUMES,
     },
     {
       id: 'cm84perfume00003',
-      name: 'Angel by Mugler',
+      name: 'Axe Dark Temptation',
       description:
-        'An iconic gourmand fragrance with sweet notes of caramel, chocolate, and patchouli. Timeless and irresistible.',
-      image: '/perfumes/angel.png',
-      price: 150,
+        'A seductive scent infused with hints of hot chocolate, amber, and red peppercorn. Axe Dark Temptation offers a sweet yet masculine aroma, making it perfect for daily use and leaving a memorable trace wherever you go.',
+      image: '/products/axe-dark-temptation.png',
+      price: 25,
+      isFeatured: false,
       Category: Category.PERFUMES,
     },
     {
       id: 'cm84perfume00004',
-      name: 'Hugo Boss Black',
+      name: 'Coco Noir by Chanel',
       description:
-        'A refined masculine scent blending citrus, spices, and woody accords. Elegant for both day and night wear.',
-      image: '/perfumes/black_boss1.png',
-      price: 110,
+        'An iconic fragrance that captures the mystery and sensuality of the night. Coco Noir combines rich floral notes with patchouli and sandalwood to deliver an unforgettable aura of elegance and strength.',
+      image: '/products/coco_noir_chanel.png',
+      price: 320,
+      isFeatured: true,
       Category: Category.PERFUMES,
     },
     {
       id: 'cm84perfume00005',
-      name: 'YSL Black Opium',
-      description:
-        'A seductive, modern fragrance featuring coffee, vanilla, and white flowers. Perfect for evenings out.',
-      image: '/perfumes/black_opium.png',
-      price: 130,
-      Category: Category.PERFUMES,
-    },
-    {
-      id: 'cm84perfume00006',
-      name: 'Hugo Boss Blue',
-      description:
-        'Fresh and vibrant with marine accords, citrus, and sandalwood. A daily scent for confidence and energy.',
-      image: '/perfumes/blue_boss.png',
-      price: 100,
-      Category: Category.PERFUMES,
-    },
-    {
-      id: 'cm84perfume00007',
-      name: 'Chanel Coco Noir',
-      description:
-        'An elegant and mysterious fragrance with bergamot, rose, and sandalwood. The essence of modern femininity.',
-      image: '/perfumes/coco_noir_chanel.png',
-      price: 200,
-      Category: Category.PERFUMES,
-    },
-    {
-      id: 'cm84perfume00008',
-      name: 'Hugo Boss Gold',
-      description:
-        'A luxurious fragrance with warm woody notes and a touch of spicy elegance. Designed for men with ambition.',
-      image: '/perfumes/gold_boss.png',
-      price: 115,
-      Category: Category.PERFUMES,
-    },
-    {
-      id: 'cm84perfume00009',
-      name: 'Hugo Boss Gray',
-      description:
-        'A versatile everyday fragrance with citrus, herbs, and a woody base. A subtle yet impactful scent.',
-      image: '/perfumes/gray_boss.png',
-      price: 95,
-      Category: Category.PERFUMES,
-    },
-    {
-      id: 'cm84perfume00010',
-      name: 'Valentino Uomo',
-      description:
-        'A sophisticated fragrance blending roasted coffee, chocolate, and leather. Bold and charismatic.',
-      image: '/perfumes/valentino.png',
-      price: 160,
-      Category: Category.PERFUMES,
-    },
-
-    // Body sprays, deodorants, lotions
-    {
-      id: 'cm84spray00001',
-      name: 'Axe Dark Temptation',
-      description:
-        'A rich chocolate-inspired fragrance with sweet and spicy notes. Irresistible and unique.',
-      image: '/perfumes/axe-dark-temptation.png',
-      price: 35,
-      Category: Category.BODY_SPRAY,
-    },
-    {
-      id: 'cm84spray00002',
-      name: 'Axe Blue',
-      description:
-        'Cool and refreshing body spray with crisp oceanic vibes. Perfect for daily freshness.',
-      image: '/perfumes/axe-blue.png',
-      price: 30,
-      Category: Category.BODY_SPRAY,
-    },
-    {
-      id: 'cm84spray00003',
-      name: 'Dove Deodorant',
-      description:
-        'Gentle protection with moisturizing cream. Keeps you fresh and soft all day.',
-      image: '/perfumes/dove.png',
-      price: 25,
-      Category: Category.BODY_SPRAY,
-    },
-    {
-      id: 'cm84spray00004',
-      name: 'Rexona',
-      description:
-        'Reliable antiperspirant that provides long-lasting protection and freshness.',
-      image: '/perfumes/rexona.png',
-      price: 20,
-      Category: Category.BODY_SPRAY,
-    },
-    {
-      id: 'cm84spray00005',
-      name: 'Ferrari Black',
-      description:
-        'Dynamic body spray with fresh, woody, and spicy notes. Inspired by speed and power.',
-      image: '/perfumes/ferrari.png',
-      price: 40,
-      Category: Category.BODY_SPRAY,
-    },
-    {
-      id: 'cm84spray00006',
       name: 'Fog Body Spray',
       description:
-        'Strong and long-lasting fragrance designed for bold personalities.',
-      image: '/perfumes/fog.png',
-      price: 35,
-      Category: Category.BODY_SPRAY,
-    },
-    {
-      id: 'cm84lotion00001',
-      name: 'Maraca Lotion',
-      description:
-        'Moisturizing lotion with a pleasant fragrance, keeping skin soft and hydrated.',
-      image: '/perfumes/maraca-lotion.png',
-      price: 50,
-      Category: Category.BODY_SPRAY,
-    },
-    {
-      id: 'cm84shampoo00001',
-      name: 'Head & Shoulders',
-      description:
-        'Classic anti-dandruff shampoo with a refreshing scent. Cleanses and protects scalp health.',
-      image: '/perfumes/head&shoulders.png',
+        'A refreshing and long-lasting body spray that keeps you energized throughout the day. Featuring a blend of crisp citrus and woody notes, Fog is perfect for anyone who values freshness and confidence in every moment.',
+      image: '/products/fog.png',
       price: 18,
-      Category: Category.BODY_SPRAY,
+      isFeatured: false,
+      Category: Category.PERFUMES,
     },
     {
-      id: 'cm84shampoo00002',
-      name: 'Pantene',
+      id: 'cm84hoodie00001',
+      name: 'Classic Red Hoodie',
       description:
-        'Nourishing shampoo for smooth and healthy hair. Trusted by millions worldwide.',
-      image: '/perfumes/pantene.png',
-      price: 22,
-      Category: Category.BODY_SPRAY,
+        'A stylish and comfortable hoodie crafted from high-quality cotton and polyester blend. Its classic design ensures versatility for everyday wear, keeping you warm and trendy whether at the gym or outdoors.',
+      image: '/products/classic_hoody.png',
+      price: 60,
+      isFeatured: false,
+      Category: Category.HOODIES,
     },
     {
-      id: 'cm84shampoo00003',
-      name: 'Pantene White',
-      description: 'Special Pantene formula for deep hydration and silky hair.',
-      image: '/perfumes/pantene-white.png',
-      price: 24,
-      Category: Category.BODY_SPRAY,
-    },
-    {
-      id: 'cm84shampoo00004',
-      name: 'Red Dove',
-      description: 'Moisturizing and gentle formula with a soothing fragrance.',
-      image: '/perfumes/reddove.png',
-      price: 20,
-      Category: Category.BODY_SPRAY,
-    },
-
-    // Air fresheners
-    {
-      id: 'cm84fresh00001',
-      name: 'Glade Air Freshener',
+      id: 'cm84hoodie00002',
+      name: 'Nature Tie-Dye Hoodie',
       description:
-        'Infuse your home with long-lasting fragrance that refreshes and uplifts.',
-      image: '/perfumes/glade.png',
-      price: 15,
-      Category: Category.AIR_FRESHENER,
+        'Bring color to your wardrobe with this vibrant tie-dye hoodie inspired by nature. Made from soft, breathable fabric, it offers both comfort and personality — perfect for casual outings and cool evenings.',
+      image: '/products/nature_hoody.png',
+      price: 70,
+      isFeatured: false,
+      Category: Category.HOODIES,
     },
     {
-      id: 'cm84fresh00002',
-      name: 'Febreze',
+      id: 'cm84electro00001',
+      name: 'Beats Wireless Headphones',
       description:
-        'Removes odors and freshens your space instantly with a light mist.',
-      image: '/perfumes/fbreze.png',
-      price: 18,
-      Category: Category.AIR_FRESHENER,
+        'Experience deep bass and crystal-clear sound with these wireless over-ear headphones. Designed for comfort and style, they feature long battery life, seamless Bluetooth connectivity, and immersive sound for music lovers.',
+      image: '/products/headphone.png',
+      price: 220,
+      isFeatured: true,
+      Category: Category.ELECTRONICS,
     },
     {
-      id: 'cm84fresh00003',
-      name: 'Febreze Lavender',
+      id: 'cm84electro00002',
+      name: 'Gold Edition Headphones',
       description:
-        'Calming lavender fragrance that creates a relaxing atmosphere.',
-      image: '/perfumes/fbreze-lavander.png',
-      price: 18,
-      Category: Category.AIR_FRESHENER,
+        'A premium gold-finished headphone that delivers both luxury and powerful performance. Designed with noise isolation and comfort in mind, it’s ideal for professionals and audiophiles seeking superior sound quality.',
+      image: '/products/headphone2.png',
+      price: 260,
+      isFeatured: false,
+      Category: Category.ELECTRONICS,
     },
     {
-      id: 'cm84fresh00004',
-      name: 'Febreze Pine',
+      id: 'cm84electro00003',
+      name: 'Gaming Mouse Pro',
       description:
-        'Fresh pine scent, perfect for the holiday season and beyond.',
-      image: '/perfumes/fbreze-pine.png',
-      price: 18,
-      Category: Category.AIR_FRESHENER,
+        'A high-precision gaming mouse with adjustable DPI, customizable lighting, and ergonomic design. Built for performance and speed, it ensures seamless control during intense gaming sessions.',
+      image: '/products/mouse.png',
+      price: 55,
+      isFeatured: false,
+      Category: Category.ELECTRONICS,
+    },
+    {
+      id: 'cm84electro00004',
+      name: 'MacBook Pro M2',
+      description:
+        'Apple’s latest MacBook Pro delivers incredible performance with the M2 chip, Retina display, and long-lasting battery life. Designed for creators, developers, and professionals who demand power and precision.',
+      image: '/products/macbook.png',
+      price: 2200,
+      isFeatured: true,
+      Category: Category.ELECTRONICS,
+    },
+    {
+      id: 'cm84electro00005',
+      name: 'Gaming Laptop Ultra',
+      description:
+        'A sleek and powerful gaming laptop equipped with the latest GPU and cooling technology. Perfect for gamers and developers who need reliable performance for demanding workloads and immersive gaming experiences.',
+      image: '/products/labtop.png',
+      price: 1800,
+      isFeatured: false,
+      Category: Category.ELECTRONICS,
+    },
+    {
+      id: 'cm84electro00006',
+      name: 'Business Laptop X2',
+      description:
+        'A lightweight yet powerful laptop built for productivity. With a fast SSD, long battery life, and sleek design, it’s ideal for students and professionals who value efficiency and style.',
+      image: '/products/labtop2.png',
+      price: 950,
+      isFeatured: false,
+      Category: Category.ELECTRONICS,
+    },
+    {
+      id: 'cm84sneaker00001',
+      name: 'AirMax Red Edition',
+      description:
+        'These stylish red sneakers combine comfort and performance with a breathable mesh design and cushioned soles. Perfect for sports, workouts, or casual outings with a bold, modern look.',
+      image: '/products/sneaker.png',
+      price: 130,
+      isFeatured: false,
+      Category: Category.SNEAKERS,
+    },
+    {
+      id: 'cm84sneaker00002',
+      name: 'AirRunner White Sneaker',
+      description:
+        'A clean and minimalist sneaker made for comfort and durability. The soft inner padding and flexible rubber sole make it an excellent choice for everyday wear and light sports activities.',
+      image: '/products/sneaker2.png',
+      price: 110,
+      isFeatured: false,
+      Category: Category.SNEAKERS,
+    },
+    {
+      id: 'cm84sneaker00003',
+      name: 'Neon Strike Sneakers',
+      description:
+        'Bright and bold, these neon sneakers make a statement with every step. Built with shock-absorbent technology, they’re perfect for running, training, or adding a splash of color to your outfit.',
+      image: '/products/sneaker3.png',
+      price: 150,
+      isFeatured: false,
+      Category: Category.SNEAKERS,
+    },
+    {
+      id: 'cm84sneaker00004',
+      name: 'Urban Gray Sneakers',
+      description:
+        'Sleek and versatile, these gray sneakers are designed to complement any outfit. Lightweight and breathable, they offer comfort throughout the day while maintaining a trendy urban aesthetic.',
+      image: '/products/sneaker6.png',
+      price: 120,
+      isFeatured: false,
+      Category: Category.SNEAKERS,
+    },
+    {
+      id: 'cm84access00001',
+      name: 'Smart Watch Series 8',
+      description:
+        'A next-gen smartwatch with health tracking, notifications, and sleek design. Featuring advanced sensors, customizable faces, and all-day battery life, it’s perfect for staying connected and active.',
+      image: '/products/watch.png',
+      price: 400,
+      isFeatured: true,
+      Category: Category.ACCESSORIES,
+    },
+    {
+      id: 'cm84access00002',
+      name: 'Smart Watch Classic',
+      description:
+        'Combining elegance with functionality, this smartwatch offers fitness tracking, message alerts, and water resistance. Perfect for those who value a balance between technology and timeless design.',
+      image: '/products/watch2.png',
+      price: 350,
+      isFeatured: false,
+      Category: Category.ACCESSORIES,
     },
   ];
 

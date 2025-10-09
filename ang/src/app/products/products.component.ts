@@ -7,10 +7,11 @@ import { debounceTime, distinctUntilChanged, Subject } from 'rxjs';
 import untilDestroyed from '../../utils/untilDestroyed';
 import { cartStore } from '../../stores/cart.store';
 import { ProductDto } from '../../utils/product.schema';
+import { Sidebar } from '../components/sidebar/sidebar';
 
 @Component({
   selector: 'app-product',
-  imports: [CommonModule, ProductCardComponent, FormsModule],
+  imports: [CommonModule, ProductCardComponent, FormsModule, Sidebar],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
