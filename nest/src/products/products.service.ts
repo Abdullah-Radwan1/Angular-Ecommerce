@@ -26,26 +26,4 @@ export class ProductsService {
   remove(id: number) {
     return `This action removes a #${id} product`;
   }
-  async SearchFunction(term: string): Promise<Product[]> {
-    const lowerCasedTerm = term.toLowerCase();
-
-    return this.Prisma.product.findMany({
-      where: {
-        OR: [
-          {
-            name: {
-              contains: lowerCasedTerm,
-              mode: 'insensitive',
-            },
-          },
-          {
-            description: {
-              contains: lowerCasedTerm,
-              mode: 'insensitive',
-            },
-          },
-        ],
-      },
-    });
-  }
 }

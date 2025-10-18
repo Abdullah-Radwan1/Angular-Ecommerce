@@ -64,6 +64,31 @@ const GET_RELATED_PRODUCTS = gql`
     }
   }
 `;
+
+const GET_FILTERD_PRODUCTS = gql`
+  query filterdProducts(
+    $minPrice: Float
+    $maxPrice: Float
+    $sort: String
+    $categories: [String!]
+    $search: String
+  ) {
+    filterdProducts(
+      search: $search
+      minPrice: $minPrice
+      maxPrice: $maxPrice
+      sort: $sort
+      categories: $categories
+    ) {
+      id
+      name
+      price
+      Category
+      image
+    }
+  }
+`;
+
 export interface ProductState {
   products: ProductDto[];
   featuredProducts: featuredDto[];
@@ -76,6 +101,7 @@ const initialState: ProductState = {
   products: [],
   relatedProducts: [],
   featuredProducts: [],
+
   selectedProduct: null, // ✅ initialize
 
   loading: false,
@@ -100,31 +126,7 @@ export const productStore = signalStore(
         )
         .subscribe();
     },
-    searchProducts: (term: string) => {
-      patchState(store, { loading: true, error: null });
-      apollo
-        .query<{ searchProducts: ProductDto[] }>({
-          query: SEARCH_PRODUCTS,
-          variables: { term }, // Changed from searchTerm to term to match your query
-        })
-        .pipe(
-          map(({ data }) => {
-            patchState(store, {
-              products: data.searchProducts,
-              loading: false,
-            });
-          }),
-          catchError((error) => {
-            patchState(store, {
-              error: error.message,
-              loading: false,
-            });
 
-            return EMPTY;
-          })
-        )
-        .subscribe();
-    },
     loadProductById: (id: string) => {
       patchState(store, { loading: true, error: null });
       apollo
@@ -176,10 +178,47 @@ export const productStore = signalStore(
         )
         .subscribe();
     },
+    searchProducts: (term: string) => {
+      patchState(store, { loading: true, error: null });
+      apollo
+        .query<{ searchProducts: ProductDto[] }>({
+          query: SEARCH_PRODUCTS,
+          variables: { term }, // Changed from searchTerm to term to match your query
+        })
+        .pipe(
+          map(({ data }) => {
+            patchState(store, {
+              products: data.searchProducts,
+              loading: false,
+            });
+          }),
+          catchError((error) => {
+            patchState(store, {
+              error: error.message,
+              loading: false,
+            });
+
+            return EMPTY;
+          })
+        )
+        .subscribe();
+    },
+    loadFilterdProducts: ({ minPrice, maxPrice, categories, sort, search }: any) => {
+      patchState(store, { loading: true, error: null });
+      apollo
+        .query<{ filterdProducts: ProductDto[] }>({
+          query: GET_FILTERD_PRODUCTS,
+          variables: { minPrice, maxPrice, categories, sort, search },
+        })
+        .pipe(
+          map(({ data }) => {
+            patchState(store, { products: data.filterdProducts, loading: false });
+          })
+        )
+        .subscribe();
+    },
     clearSelectedProduct: () => {
       patchState(store, { selectedProduct: null, loading: true });
     },
   }))
 );
-
-//test

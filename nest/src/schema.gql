@@ -65,10 +65,10 @@ type Product {
 
 type Query {
   featuredProducts: [Product!]!
+  filterdProducts(categories: [String!], maxPrice: Float, minPrice: Float, search: String, sort: String): [Product!]!
   order(id: String!): Order!
   orders: [Order!]!
   product(id: String!): Product!
   products: [Product!]!
   relatedProducts(Category: Category!): [Product!]!
-  searchProducts(term: String!): [Product!]!
 }
