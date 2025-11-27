@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 @plugin "daisyui" {
-  themes: pastel --default, dark --prefersdark;
+  themes: wireframe --default, dark --prefersdark;
 }
 
 @tailwind utilities;

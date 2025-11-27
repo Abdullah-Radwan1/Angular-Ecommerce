@@ -1,39 +1,38 @@
-<nav class="bg-base-100 shadow-md flex justify-evenly items-center gap-4 pt-2 px-4">
-  <a href="/">
-    <img src="/logo.png" />
-  </a>
-
-  <div class="flex items-center gap-2 flex-grow max-w-2xl mx-4">
-    <div class="w-full rounded-md p-[2px] bg-gradient-to-r from-purple-500 to-green-500">
-      <div class="rounded-md bg-white text-black">
-        <input
-          type="text"
-          placeholder="Search for any product you want"
-          class="w-full rounded-md px-3 py-2 text-gray-900 placeholder:text-gray-400 focus:outline-none"
-        />
-      </div>
+<nav class="bg-base-100 justify-around flex items-center px-4 py-6">
+  <!-- Left side - Shop dropdown and Home -->
+  <div class="flex items-center gap-4">
+    <div class="dropdown">
+      <label tabindex="0" class="text-lg cursor-pointer">Shop</label>
+      <ul tabindex="0" class="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 w-52">
+        <li><a>Tables</a></li>
+        <li><a>Chairs</a></li>
+        <li><a>Clocks</a></li>
+      </ul>
     </div>
-
-    <button class="btn btn-square btn-ghost shrink-0">
-      <lucide-angular [img]="Search"></lucide-angular>
-    </button>
+    <a class="text-lg">Home</a>
   </div>
 
-  <section class="flex items-center gap-2 shrink-0">
+  <!-- Center - Logo -->
+  <div class="text-center">
+    <h4 class="text-xl">VOGUE HAVEN</h4>
+  </div>
+
+  <!-- Right side - Dropdown, Login, Cart -->
+  <section class="flex items-center gap-4">
+    <a class="text-lg">Login</a>
+
     <button routerLink="/cart" class="btn relative btn-square btn-ghost">
       <lucide-angular [img]="ShoppingBag"></lucide-angular>
       <span class="badge absolute bottom-8 left-8 badge-sm badge-primary">
         {{ cartStore.totalItems() }}
       </span>
     </button>
+
     <div class="dropdown dropdown-end">
       <label tabindex="0" class="btn btn-ghost btn-square">
         <lucide-angular [img]="Menu"></lucide-angular>
       </label>
-      <ul
-        tabindex="0"
-        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-      >
+      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 w-52">
         <li><a>Profile</a></li>
         <li><a routerLink="/products">Products</a></li>
         <li><a>Logout</a></li>
