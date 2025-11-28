@@ -5,10 +5,10 @@
 """Product category enum"""
 enum Category {
   ACCESSORIES
-  ELECTRONICS
-  HOODIES
-  PERFUMES
-  SNEAKERS
+  CHAIRS
+  CLOCKS
+  LAMPS
+  TABLES
 }
 
 input CreateOrderInput {
@@ -64,7 +64,7 @@ type Product {
 }
 
 type Query {
-  featuredProducts: [Product!]!
+  categoryProducts(category: Category!): [Product!]!
   filterdProducts(categories: [String!], maxPrice: Float, minPrice: Float, search: String, sort: String): [Product!]!
   order(id: String!): Order!
   orders: [Order!]!

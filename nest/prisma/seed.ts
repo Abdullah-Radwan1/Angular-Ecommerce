@@ -1,198 +1,144 @@
 import { db } from './db';
 import { Category } from '@prisma/client';
+import { v4 as uuidv4 } from 'uuid';
 
 async function main() {
   console.log('Seeding products...');
 
   const products = [
     {
-      id: 'cm84perfume00001',
-      name: '1 Million by Paco Rabanne',
+      id: uuidv4(),
+      name: 'Basket',
       description:
-        'A bold and luxurious fragrance blending notes of blood mandarin, cinnamon, and leather. Designed for confident men who appreciate timeless elegance with a modern edge. Perfect for both day and evening wear, leaving a lasting impression.',
-      image: '/products/1_million.png',
-      price: 120,
-      isFeatured: true,
-      Category: Category.PERFUMES,
-    },
-    {
-      id: 'cm84perfume00002',
-      name: 'Amouage Reflection Man',
-      description:
-        'An exquisite fragrance that combines the freshness of rosemary and orange blossom with warm woody undertones. Reflection Man embodies sophistication and calm power, making it ideal for formal occasions or intimate evenings.',
-      image: '/products/amouage.png',
-      price: 260,
-      isFeatured: false,
-      Category: Category.PERFUMES,
-    },
-    {
-      id: 'cm84perfume00003',
-      name: 'Axe Dark Temptation',
-      description:
-        'A seductive scent infused with hints of hot chocolate, amber, and red peppercorn. Axe Dark Temptation offers a sweet yet masculine aroma, making it perfect for daily use and leaving a memorable trace wherever you go.',
-      image: '/products/axe-dark-temptation.png',
-      price: 25,
-      isFeatured: false,
-      Category: Category.PERFUMES,
-    },
-    {
-      id: 'cm84perfume00004',
-      name: 'Coco Noir by Chanel',
-      description:
-        'An iconic fragrance that captures the mystery and sensuality of the night. Coco Noir combines rich floral notes with patchouli and sandalwood to deliver an unforgettable aura of elegance and strength.',
-      image: '/products/coco_noir_chanel.png',
-      price: 320,
-      isFeatured: true,
-      Category: Category.PERFUMES,
-    },
-    {
-      id: 'cm84perfume00005',
-      name: 'Fog Body Spray',
-      description:
-        'A refreshing and long-lasting body spray that keeps you energized throughout the day. Featuring a blend of crisp citrus and woody notes, Fog is perfect for anyone who values freshness and confidence in every moment.',
-      image: '/products/fog.png',
-      price: 18,
-      isFeatured: false,
-      Category: Category.PERFUMES,
-    },
-    {
-      id: 'cm84hoodie00001',
-      name: 'Classic Red Hoodie',
-      description:
-        'A stylish and comfortable hoodie crafted from high-quality cotton and polyester blend. Its classic design ensures versatility for everyday wear, keeping you warm and trendy whether at the gym or outdoors.',
-      image: '/products/classic_hoody.png',
-      price: 60,
-      isFeatured: false,
-      Category: Category.HOODIES,
-    },
-    {
-      id: 'cm84hoodie00002',
-      name: 'Nature Tie-Dye Hoodie',
-      description:
-        'Bring color to your wardrobe with this vibrant tie-dye hoodie inspired by nature. Made from soft, breathable fabric, it offers both comfort and personality — perfect for casual outings and cool evenings.',
-      image: '/products/nature_hoody.png',
-      price: 70,
-      isFeatured: false,
-      Category: Category.HOODIES,
-    },
-    {
-      id: 'cm84electro00001',
-      name: 'Beats Wireless Headphones',
-      description:
-        'Experience deep bass and crystal-clear sound with these wireless over-ear headphones. Designed for comfort and style, they feature long battery life, seamless Bluetooth connectivity, and immersive sound for music lovers.',
-      image: '/products/headphone.png',
-      price: 220,
-      isFeatured: true,
-      Category: Category.ELECTRONICS,
-    },
-    {
-      id: 'cm84electro00002',
-      name: 'Gold Edition Headphones',
-      description:
-        'A premium gold-finished headphone that delivers both luxury and powerful performance. Designed with noise isolation and comfort in mind, it’s ideal for professionals and audiophiles seeking superior sound quality.',
-      image: '/products/headphone2.png',
-      price: 260,
-      isFeatured: false,
-      Category: Category.ELECTRONICS,
-    },
-    {
-      id: 'cm84electro00003',
-      name: 'Gaming Mouse Pro',
-      description:
-        'A high-precision gaming mouse with adjustable DPI, customizable lighting, and ergonomic design. Built for performance and speed, it ensures seamless control during intense gaming sessions.',
-      image: '/products/mouse.png',
-      price: 55,
-      isFeatured: false,
-      Category: Category.ELECTRONICS,
-    },
-    {
-      id: 'cm84electro00004',
-      name: 'MacBook Pro M2',
-      description:
-        'Apple’s latest MacBook Pro delivers incredible performance with the M2 chip, Retina display, and long-lasting battery life. Designed for creators, developers, and professionals who demand power and precision.',
-      image: '/products/macbook.png',
-      price: 2200,
-      isFeatured: true,
-      Category: Category.ELECTRONICS,
-    },
-    {
-      id: 'cm84electro00005',
-      name: 'Gaming Laptop Ultra',
-      description:
-        'A sleek and powerful gaming laptop equipped with the latest GPU and cooling technology. Perfect for gamers and developers who need reliable performance for demanding workloads and immersive gaming experiences.',
-      image: '/products/labtop.png',
-      price: 1800,
-      isFeatured: false,
-      Category: Category.ELECTRONICS,
-    },
-    {
-      id: 'cm84electro00006',
-      name: 'Business Laptop X2',
-      description:
-        'A lightweight yet powerful laptop built for productivity. With a fast SSD, long battery life, and sleek design, it’s ideal for students and professionals who value efficiency and style.',
-      image: '/products/labtop2.png',
-      price: 950,
-      isFeatured: false,
-      Category: Category.ELECTRONICS,
-    },
-    {
-      id: 'cm84sneaker00001',
-      name: 'AirMax Red Edition',
-      description:
-        'These stylish red sneakers combine comfort and performance with a breathable mesh design and cushioned soles. Perfect for sports, workouts, or casual outings with a bold, modern look.',
-      image: '/products/sneaker.png',
-      price: 130,
-      isFeatured: false,
-      Category: Category.SNEAKERS,
-    },
-    {
-      id: 'cm84sneaker00002',
-      name: 'AirRunner White Sneaker',
-      description:
-        'A clean and minimalist sneaker made for comfort and durability. The soft inner padding and flexible rubber sole make it an excellent choice for everyday wear and light sports activities.',
-      image: '/products/sneaker2.png',
-      price: 110,
-      isFeatured: false,
-      Category: Category.SNEAKERS,
-    },
-    {
-      id: 'cm84sneaker00003',
-      name: 'Neon Strike Sneakers',
-      description:
-        'Bright and bold, these neon sneakers make a statement with every step. Built with shock-absorbent technology, they’re perfect for running, training, or adding a splash of color to your outfit.',
-      image: '/products/sneaker3.png',
-      price: 150,
-      isFeatured: false,
-      Category: Category.SNEAKERS,
-    },
-    {
-      id: 'cm84sneaker00004',
-      name: 'Urban Gray Sneakers',
-      description:
-        'Sleek and versatile, these gray sneakers are designed to complement any outfit. Lightweight and breathable, they offer comfort throughout the day while maintaining a trendy urban aesthetic.',
-      image: '/products/sneaker6.png',
-      price: 120,
-      isFeatured: false,
-      Category: Category.SNEAKERS,
-    },
-    {
-      id: 'cm84access00001',
-      name: 'Smart Watch Series 8',
-      description:
-        'A next-gen smartwatch with health tracking, notifications, and sleek design. Featuring advanced sensors, customizable faces, and all-day battery life, it’s perfect for staying connected and active.',
-      image: '/products/watch.png',
-      price: 400,
-      isFeatured: true,
+        'A durable and beautifully crafted basket perfect for storage or decorative purposes. Made from high-quality eco-friendly materials that are both sustainable and long-lasting, this versatile piece adds natural warmth to any room while providing practical storage solutions for your everyday needs and organizing essentials in style.',
+      image: '/products/basket.jpg',
+      price: 50,
       Category: Category.ACCESSORIES,
     },
     {
-      id: 'cm84access00002',
-      name: 'Smart Watch Classic',
+      id: uuidv4(),
+      name: 'Black Chair',
       description:
-        'Combining elegance with functionality, this smartwatch offers fitness tracking, message alerts, and water resistance. Perfect for those who value a balance between technology and timeless design.',
-      image: '/products/watch2.png',
-      price: 350,
-      isFeatured: false,
+        'Elegant black chair designed for both comfort and modern aesthetics, featuring premium upholstery and sturdy construction. The ergonomic design provides excellent back support for extended sitting periods, making it perfect for dining rooms, home offices, or living spaces where style meets functionality and everyday comfort is a priority for modern homeowners.',
+      image: '/products/black-chair.jpg',
+      price: 120,
+      Category: Category.CHAIRS,
+    },
+    {
+      id: uuidv4(),
+      name: 'Black Clock',
+      description:
+        'Minimalist black clock featuring a sleek design that enhances any home or office decor with its sophisticated appearance. The silent quartz movement ensures accurate timekeeping without disturbing noise, while the large easy-to-read numerals make it practical for daily use in various rooms including living spaces, bedrooms, and modern workspace environments.',
+      image: '/products/black-clock.jpg',
+      price: 70,
+      Category: Category.CLOCKS,
+    },
+    {
+      id: uuidv4(),
+      name: 'Cup',
+      description:
+        'Beautiful ceramic cup suitable for both hot and cold beverages, featuring a comfortable handle and elegant finish. Crafted from high-quality materials that are dishwasher and microwave safe, this versatile cup is perfect for morning coffee, afternoon tea, or any beverage throughout your day while adding a touch of sophistication.',
+      image: '/products/cup.jpg',
+      price: 15,
+      Category: Category.ACCESSORIES,
+    },
+    {
+      id: uuidv4(),
+      name: 'Dark Lamp',
+      description:
+        'Stylish dark-colored lamp that creates a warm and inviting ambience in any room with its soft, diffused lighting. Featuring an adjustable head for directional lighting and energy-efficient LED compatibility, this lamp is perfect for reading corners, bedside tables, or living room accents where both functionality and aesthetic appeal matter.',
+      image: '/products/dark-lamp.jpg',
+      price: 80,
+      Category: Category.LAMPS,
+    },
+    {
+      id: uuidv4(),
+      name: 'Drawer',
+      description:
+        'Compact and functional drawer unit designed for optimal organization of your essentials and personal belongings. Constructed from durable materials with smooth-gliding drawers and secure handles, this versatile storage solution fits perfectly in bedrooms, entryways, or offices while maintaining a clean and modern aesthetic that complements various decor styles.',
+      image: '/products/drawer.jpg',
+      price: 150,
+      Category: Category.TABLES,
+    },
+    {
+      id: uuidv4(),
+      name: 'Golden Clock',
+      description:
+        'Luxury golden clock that adds a significant touch of elegance and sophistication to any living or workspace. Featuring precision quartz movement and exquisite detailing, this statement piece serves as both a functional timepiece and decorative element that elevates your interior design while providing reliable timekeeping for your daily routine.',
+      image: '/products/golden-clock.jpg',
+      price: 200,
+      Category: Category.CLOCKS,
+    },
+    {
+      id: uuidv4(),
+      name: 'Gray Chair',
+      description:
+        'Comfortable gray chair expertly designed to provide both exceptional style and superior back support for extended use. Upholstered in premium fabric that is both durable and easy to clean, this versatile chair works beautifully in dining areas, home offices, or as accent seating in living spaces where comfort meets contemporary design.',
+      image: '/products/gray-chair.jpg',
+      price: 130,
+      Category: Category.CHAIRS,
+    },
+    {
+      id: uuidv4(),
+      name: 'Grey Clock',
+      description:
+        'Modern grey clock featuring a sleek and contemporary design that complements various interior styles from minimalist to industrial. With its silent sweeping movement and clear numeral display, this functional timepiece is perfect for living rooms, kitchens, or office spaces where you need reliable timekeeping without compromising on aesthetic appeal.',
+      image: '/products/grey-clock.jpg',
+      price: 75,
+      Category: Category.CLOCKS,
+    },
+    {
+      id: uuidv4(),
+      name: 'White Chair',
+      description:
+        'Sleek and modern white chair designed for both dining areas and contemporary workspaces with its clean lines and comfortable seating. Built with a sturdy frame and premium materials that are easy to maintain, this versatile chair brings brightness and elegance to any room while providing comfortable seating for various activities.',
+      image: '/products/white-chair.jpg',
+      price: 140,
+      Category: Category.CHAIRS,
+    },
+    {
+      id: uuidv4(),
+      name: 'Wooden Table',
+      description:
+        'Sturdy wooden table featuring a beautiful natural finish that showcases the wood grain and adds warmth to any space. Perfect for living rooms, dining areas, or home offices, this versatile table provides ample surface area for various activities while its durable construction ensures long-lasting use and timeless appeal.',
+      image: '/products/wooden-table.jpg',
+      price: 300,
+      Category: Category.TABLES,
+    },
+    {
+      id: uuidv4(),
+      name: 'Lamp',
+      description:
+        'Minimalist lamp designed to provide soft, ambient lighting that creates a cozy atmosphere in bedrooms, living rooms, or offices. Featuring an adjustable neck for customized lighting direction and energy-efficient compatibility, this practical yet stylish lamp enhances your space while providing the perfect illumination for reading or relaxing.',
+      image: '/products/lamp.jpg',
+      price: 90,
+      Category: Category.LAMPS,
+    },
+    {
+      id: uuidv4(),
+      name: 'Table',
+      description:
+        'Elegant and versatile table suitable for various purposes including work surfaces, dining areas, or decorative displays in your home. Crafted from high-quality materials with a refined finish, this functional piece provides ample space for your needs while adding a touch of sophistication to any room decor.',
+      image: '/products/table.jpg',
+      price: 250,
+      Category: Category.TABLES,
+    },
+    {
+      id: uuidv4(),
+      name: 'Teapot',
+      description:
+        'Beautiful ceramic teapot designed specifically for tea enthusiasts who appreciate both form and function in their tea brewing experience. Featuring an ergonomic handle and precision pour spout, this teapot maintains optimal temperature for your favorite teas while serving as an elegant centerpiece for your kitchen or dining table.',
+      image: '/products/teapot.jpg',
+      price: 60,
+      Category: Category.ACCESSORIES,
+    },
+    {
+      id: uuidv4(),
+      name: 'Vase',
+      description:
+        'Decorative vase that beautifully enhances your home decor whether used with fresh flowers, dried arrangements, or as a standalone piece. Crafted from high-quality materials with a timeless design, this versatile vase adds elegance to any room including living spaces, dining areas, or entryways while complementing various interior styles.',
+      image: '/products/vase.jpg',
+      price: 70,
       Category: Category.ACCESSORIES,
     },
   ];

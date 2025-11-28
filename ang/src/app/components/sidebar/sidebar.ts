@@ -26,6 +26,7 @@ export class Sidebar implements OnInit {
     this.applyFilters(); // apply all filters including search
   }
   @Output() filtersChanged = new EventEmitter<any>();
+
   SlidersHorizontal = SlidersHorizontal;
 
   minPrice: number = 0;

@@ -33,7 +33,6 @@ model Product {
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
   Category    Category
-  isFeatured  Boolean     @default(false)
   orderItems  OrderItem[]
 }
 
@@ -67,9 +66,10 @@ enum OrderStatus {
 }
 
 enum Category {
-  PERFUMES
-  SNEAKERS
-  ACCESSORIES
-  ELECTRONICS
-  HOODIES
+CHAIRS
+CLOCKS
+LAMPS
+TABLES
+ACCESSORIES
+
 }

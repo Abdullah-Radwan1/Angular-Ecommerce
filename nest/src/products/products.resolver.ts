@@ -27,11 +27,13 @@ export class ProductsResolver {
     });
   }
 
-  @Query(() => [Product], { name: 'featuredProducts' })
-  featuredProducts() {
+  @Query(() => [Product], { name: 'categoryProducts' })
+  categoryProducts(
+    @Args('category', { type: () => Category }) category: Category,
+  ) {
     return this.Prisma.product.findMany({
-      where: { Category: Category.PERFUMES }, // ✅ use enum
-      take: 4,
+      where: { Category: category },
+      take: 8,
     });
   }
 

@@ -15,6 +15,9 @@ export class ProductCardComponent {
   constructor(private toast: ToastService) {}
 
   addToCart = output<ProductDto>();
+  getFirstWords(text: string, wordCount: number): string {
+    return text.split(' ').slice(0, wordCount).join(' ');
+  }
   onAddToCart(product: ProductDto) {
     this.addToCart.emit(product);
     this.toast.show('Product added to cart!', 'success');

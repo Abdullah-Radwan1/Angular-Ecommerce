@@ -18,6 +18,8 @@ export class ProductsComponent {
   addToCart(product: ProductDto) {
     this.cartStore.addToCart(product);
   }
+  sidebarCollapsed = false;
+
   cartStore = inject(cartStore);
   productStore = inject(productStore);
 

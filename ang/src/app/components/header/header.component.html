@@ -1,41 +1,54 @@
-<nav class="bg-base-100 justify-around flex items-center px-4 py-6">
-  <!-- Left side - Shop dropdown and Home -->
-  <div class="flex items-center gap-4">
+<nav class="bg-base-100 flex items-center justify-between sm:justify-evenly px-4 py-6">
+  <!-- Left side - Home, Categories, Shop (desktop only) -->
+  <div class="hidden sm:flex items-center gap-8 text-sm">
+    <a href="/">Home</a>
+
+    <!-- Categories Dropdown -->
     <div class="dropdown">
-      <label tabindex="0" class="text-lg cursor-pointer">Shop</label>
+      <label tabindex="0" class="cursor-pointer">Categories</label>
       <ul tabindex="0" class="menu dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 w-52">
-        <li><a>Tables</a></li>
-        <li><a>Chairs</a></li>
-        <li><a>Clocks</a></li>
+        <li><a href="/products?category=Tables">Tables</a></li>
+        <li><a href="/products?category=Chairs">Chairs</a></li>
+        <li><a href="/products?category=Clocks">Clocks</a></li>
       </ul>
     </div>
-    <a class="text-lg">Home</a>
+
+    <a routerLink="/products" href="/products">Shop</a>
   </div>
 
   <!-- Center - Logo -->
-  <div class="text-center">
-    <h4 class="text-xl">VOGUE HAVEN</h4>
+  <div class="w-full sm:w-auto order-first sm:order-none">
+    <h4 class="text-2xl font-bold tracking-widest">VOGUE HAVEN</h4>
   </div>
 
-  <!-- Right side - Dropdown, Login, Cart -->
+  <!-- Right side - Cart + Hamburger Menu -->
   <section class="flex items-center gap-4">
-    <a class="text-lg">Login</a>
-
+    <!-- Cart Button -->
+    <a class="hidden sm:block" routerLink="/about">About us</a>
     <button routerLink="/cart" class="btn relative btn-square btn-ghost">
       <lucide-angular [img]="ShoppingBag"></lucide-angular>
-      <span class="badge absolute bottom-8 left-8 badge-sm badge-primary">
+      <span class="badge bg-black text-white rounded-full absolute bottom-8 left-8">
         {{ cartStore.totalItems() }}
       </span>
     </button>
 
-    <div class="dropdown dropdown-end">
+    <!-- Mobile Hamburger Menu -->
+    <div class="dropdown dropdown-end sm:hidden">
       <label tabindex="0" class="btn btn-ghost btn-square">
         <lucide-angular [img]="Menu"></lucide-angular>
       </label>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 w-52">
-        <li><a>Profile</a></li>
-        <li><a routerLink="/products">Products</a></li>
-        <li><a>Logout</a></li>
+        <li><a href="/">Home</a></li>
+        <li>
+          <a>Categories</a>
+          <ul class="p-2">
+            <li><a href="/products?category=Tables">Tables</a></li>
+            <li><a href="/products?category=Chairs">Chairs</a></li>
+            <li><a href="/products?category=Clocks">Clocks</a></li>
+          </ul>
+        </li>
+        <li><a routerLink="/products">Shop</a></li>
+        <li><a routerLink="/about">About us</a></li>
       </ul>
     </div>
   </section>
