@@ -24,10 +24,13 @@
   <!-- Right side - Cart + Hamburger Menu -->
   <section class="flex items-center gap-4">
     <!-- Cart Button -->
-    <a class="hidden sm:block" routerLink="/about">About us</a>
+    <a class="hidden sm:block" routerLink="/about">About us </a>
+    <a routerLink="/wishlist" href="/wishlist">
+      <lucide-angular size="20" [img]="Heart"></lucide-angular
+    ></a>
     <button routerLink="/cart" class="btn relative btn-square btn-ghost">
-      <lucide-angular [img]="ShoppingBag"></lucide-angular>
-      <span class="badge bg-black text-white rounded-full absolute bottom-8 left-8">
+      <lucide-angular size="20" [img]="ShoppingBag"></lucide-angular>
+      <span class="badge-xs bg-black text-white rounded-full absolute bottom-8 left-8">
         {{ cartStore.totalItems() }}
       </span>
     </button>

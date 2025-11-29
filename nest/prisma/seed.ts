@@ -7,146 +7,148 @@ async function main() {
 
   const products = [
     {
-      id: uuidv4(),
       name: 'Basket',
       description:
-        'A durable and beautifully crafted basket perfect for storage or decorative purposes. Made from high-quality eco-friendly materials that are both sustainable and long-lasting, this versatile piece adds natural warmth to any room while providing practical storage solutions for your everyday needs and organizing essentials in style.',
+        'A durable handwoven basket crafted from eco-friendly materials, offering excellent storage for household items. Its natural finish blends seamlessly with any décor while providing a stylish and practical solution for organizing personal essentials.',
       image: '/products/basket.jpg',
       price: 50,
       Category: Category.ACCESSORIES,
+      tags: ['storage', 'handmade', 'eco-friendly'],
     },
     {
-      id: uuidv4(),
       name: 'Black Chair',
       description:
-        'Elegant black chair designed for both comfort and modern aesthetics, featuring premium upholstery and sturdy construction. The ergonomic design provides excellent back support for extended sitting periods, making it perfect for dining rooms, home offices, or living spaces where style meets functionality and everyday comfort is a priority for modern homeowners.',
+        'A sleek black chair designed for modern interiors, featuring ergonomic curves and premium cushioning for exceptional comfort. Its sturdy construction and minimalist look make it suitable for dining rooms, workspaces, and contemporary home décor.',
       image: '/products/black-chair.jpg',
       price: 120,
       Category: Category.CHAIRS,
+      tags: ['modern', 'ergonomic', 'upholstery'],
     },
     {
-      id: uuidv4(),
       name: 'Black Clock',
       description:
-        'Minimalist black clock featuring a sleek design that enhances any home or office decor with its sophisticated appearance. The silent quartz movement ensures accurate timekeeping without disturbing noise, while the large easy-to-read numerals make it practical for daily use in various rooms including living spaces, bedrooms, and modern workspace environments.',
+        'A minimalist black clock with a clean, contemporary design that complements any room. Featuring silent quartz movement and easy-to-read hands, it adds both functionality and refined elegance to modern home or office spaces.',
       image: '/products/black-clock.jpg',
       price: 70,
       Category: Category.CLOCKS,
+      tags: ['minimalist', 'silent', 'modern'],
     },
     {
-      id: uuidv4(),
       name: 'Cup',
       description:
-        'Beautiful ceramic cup suitable for both hot and cold beverages, featuring a comfortable handle and elegant finish. Crafted from high-quality materials that are dishwasher and microwave safe, this versatile cup is perfect for morning coffee, afternoon tea, or any beverage throughout your day while adding a touch of sophistication.',
+        'A beautifully crafted ceramic cup designed for both hot and cold beverages. Its smooth texture, comfortable grip, and durable build make it ideal for daily use, whether enjoying morning coffee or evening tea.',
       image: '/products/cup.jpg',
       price: 15,
       Category: Category.ACCESSORIES,
+      tags: ['ceramic', 'kitchen', 'drinkware'],
     },
     {
-      id: uuidv4(),
       name: 'Dark Lamp',
       description:
-        'Stylish dark-colored lamp that creates a warm and inviting ambience in any room with its soft, diffused lighting. Featuring an adjustable head for directional lighting and energy-efficient LED compatibility, this lamp is perfect for reading corners, bedside tables, or living room accents where both functionality and aesthetic appeal matter.',
+        'A stylish dark-colored lamp that enhances any room with warm, ambient lighting. Its adjustable head allows flexible illumination, while the modern design blends perfectly with bedrooms, living rooms, or professional workspace environments.',
       image: '/products/dark-lamp.jpg',
       price: 80,
       Category: Category.LAMPS,
+      tags: ['led', 'ambient', 'adjustable'],
     },
     {
-      id: uuidv4(),
       name: 'Drawer',
       description:
-        'Compact and functional drawer unit designed for optimal organization of your essentials and personal belongings. Constructed from durable materials with smooth-gliding drawers and secure handles, this versatile storage solution fits perfectly in bedrooms, entryways, or offices while maintaining a clean and modern aesthetic that complements various decor styles.',
+        'A compact wooden drawer unit built for efficient organization and long-lasting use. With smooth-sliding compartments and a clean minimalist design, it fits perfectly in bedrooms, offices, or entryways to keep daily essentials neatly arranged.',
       image: '/products/drawer.jpg',
       price: 150,
       Category: Category.TABLES,
+      tags: ['storage', 'wooden'],
     },
     {
-      id: uuidv4(),
       name: 'Golden Clock',
       description:
-        'Luxury golden clock that adds a significant touch of elegance and sophistication to any living or workspace. Featuring precision quartz movement and exquisite detailing, this statement piece serves as both a functional timepiece and decorative element that elevates your interior design while providing reliable timekeeping for your daily routine.',
+        'A luxurious golden clock featuring elegant detailing and a polished metallic finish. Its reliable quartz movement ensures accurate timekeeping, while its sophisticated design adds a striking decorative accent to upscale homes and office interiors.',
       image: '/products/golden-clock.jpg',
       price: 200,
       Category: Category.CLOCKS,
+      tags: ['luxury', 'gold', 'decor'],
     },
     {
-      id: uuidv4(),
       name: 'Gray Chair',
       description:
-        'Comfortable gray chair expertly designed to provide both exceptional style and superior back support for extended use. Upholstered in premium fabric that is both durable and easy to clean, this versatile chair works beautifully in dining areas, home offices, or as accent seating in living spaces where comfort meets contemporary design.',
+        'A comfortable gray chair upholstered in high-quality fabric that resists wear and maintains its shape. Its ergonomic design provides support for long sitting periods, making it an excellent choice for homes, offices, or dining spaces.',
       image: '/products/gray-chair.jpg',
       price: 130,
       Category: Category.CHAIRS,
+      tags: ['fabric', 'comfortable', 'modern'],
     },
     {
-      id: uuidv4(),
       name: 'Grey Clock',
       description:
-        'Modern grey clock featuring a sleek and contemporary design that complements various interior styles from minimalist to industrial. With its silent sweeping movement and clear numeral display, this functional timepiece is perfect for living rooms, kitchens, or office spaces where you need reliable timekeeping without compromising on aesthetic appeal.',
+        'A modern grey wall clock featuring silent movement and a sleek minimalist frame. Its contemporary design suits a variety of interiors, offering reliable timekeeping while serving as a refined decorative piece in any living or workspace.',
       image: '/products/grey-clock.jpg',
       price: 75,
       Category: Category.CLOCKS,
+      tags: ['wall-clock', 'silent', 'contemporary'],
     },
     {
-      id: uuidv4(),
       name: 'White Chair',
       description:
-        'Sleek and modern white chair designed for both dining areas and contemporary workspaces with its clean lines and comfortable seating. Built with a sturdy frame and premium materials that are easy to maintain, this versatile chair brings brightness and elegance to any room while providing comfortable seating for various activities.',
+        'A clean and modern white chair built with durable materials and smooth edges. Its versatile style suits dining rooms, home offices, and study areas while offering comfortable seating with a refreshing, bright aesthetic that elevates any space.',
       image: '/products/white-chair.jpg',
       price: 140,
       Category: Category.CHAIRS,
+      tags: ['white', 'minimal', 'dining'],
     },
     {
-      id: uuidv4(),
       name: 'Wooden Table',
       description:
-        'Sturdy wooden table featuring a beautiful natural finish that showcases the wood grain and adds warmth to any space. Perfect for living rooms, dining areas, or home offices, this versatile table provides ample surface area for various activities while its durable construction ensures long-lasting use and timeless appeal.',
+        'A sturdy wooden table featuring a beautiful natural grain finish. Its spacious surface makes it perfect for dining, working, or displaying décor. Crafted with durability in mind, it adds warmth and timeless character to any room.',
       image: '/products/wooden-table.jpg',
       price: 300,
       Category: Category.TABLES,
+      tags: ['wooden', 'handcrafted', 'natural'],
     },
     {
-      id: uuidv4(),
       name: 'Lamp',
       description:
-        'Minimalist lamp designed to provide soft, ambient lighting that creates a cozy atmosphere in bedrooms, living rooms, or offices. Featuring an adjustable neck for customized lighting direction and energy-efficient compatibility, this practical yet stylish lamp enhances your space while providing the perfect illumination for reading or relaxing.',
+        'A minimalist lamp designed to provide gentle ambient lighting, ideal for reading or relaxation. Its adjustable neck ensures directional illumination, while the sleek design blends seamlessly with modern bedrooms, offices, or cozy living spaces.',
       image: '/products/lamp.jpg',
       price: 90,
       Category: Category.LAMPS,
+      tags: ['minimalist', 'adjustable'],
     },
     {
-      id: uuidv4(),
       name: 'Table',
       description:
-        'Elegant and versatile table suitable for various purposes including work surfaces, dining areas, or decorative displays in your home. Crafted from high-quality materials with a refined finish, this functional piece provides ample space for your needs while adding a touch of sophistication to any room decor.',
+        'A versatile table designed for multiple purposes including work, dining, or décor display. Featuring a smooth surface and durable frame, it blends modern practicality with a clean aesthetic that suits a wide range of interior styles.',
       image: '/products/table.jpg',
       price: 250,
       Category: Category.TABLES,
+      tags: ['versatile', 'modern', 'multi-purpose'],
     },
     {
-      id: uuidv4(),
       name: 'Teapot',
       description:
-        'Beautiful ceramic teapot designed specifically for tea enthusiasts who appreciate both form and function in their tea brewing experience. Featuring an ergonomic handle and precision pour spout, this teapot maintains optimal temperature for your favorite teas while serving as an elegant centerpiece for your kitchen or dining table.',
+        'A beautifully designed ceramic teapot crafted for tea enthusiasts. It retains heat effectively and pours smoothly, making it perfect for daily brewing. Its elegant shape enhances kitchen décor while delivering a pleasant tea-drinking experience.',
       image: '/products/teapot.jpg',
       price: 60,
       Category: Category.ACCESSORIES,
+      tags: ['tea', 'ceramic', 'kitchen'],
     },
     {
-      id: uuidv4(),
       name: 'Vase',
       description:
-        'Decorative vase that beautifully enhances your home decor whether used with fresh flowers, dried arrangements, or as a standalone piece. Crafted from high-quality materials with a timeless design, this versatile vase adds elegance to any room including living spaces, dining areas, or entryways while complementing various interior styles.',
+        'A decorative ceramic vase perfect for fresh flowers, dried arrangements, or standalone display. Its timeless design and smooth finish enhance any room, adding a touch of elegance to living spaces, dining areas, or entryway tables.',
       image: '/products/vase.jpg',
       price: 70,
       Category: Category.ACCESSORIES,
+      tags: ['decor', 'ceramic', 'flowers'],
     },
   ];
 
   for (const product of products) {
+    const { ...dataWithoutId } = product;
+
     await db.product.upsert({
-      where: { id: product.id },
-      update: {},
+      where: { name: product.name },
+      update: dataWithoutId,
       create: product,
     });
   }

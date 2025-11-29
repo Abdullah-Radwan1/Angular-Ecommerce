@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ShoppingBag, Search, LucideAngularModule, Menu } from 'lucide-angular';
+import { ShoppingBag, Search, LucideAngularModule, Menu, Heart } from 'lucide-angular';
 import { cartStore } from '../../../stores/cart.store';
 
 @Component({
@@ -17,4 +17,5 @@ export class HeaderComponent {
   ShoppingBag = ShoppingBag;
   Search = Search;
   Menu = Menu;
+  Heart = Heart;
 }

@@ -48,6 +48,7 @@ const GET_PRODUCT_BY_ID = gql`
       price
       image
       Category
+      tags
     }
   }
 `;
@@ -133,6 +134,7 @@ export const productStore = signalStore(
         .query<{ product: ProductDto }>({ query: GET_PRODUCT_BY_ID, variables: { id } })
         .pipe(
           map(({ data }) => {
+            console.log(data);
             patchState(store, {
               error: null,
               loading: false,

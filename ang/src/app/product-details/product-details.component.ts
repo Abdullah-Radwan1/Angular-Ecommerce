@@ -4,19 +4,24 @@ import { productStore } from '../../stores/product.store';
 import { cartStore } from '../../stores/cart.store';
 import { Subject, takeUntil } from 'rxjs';
 import { ProductCardComponent } from '../components/product-card/product-card.component';
+import { HeartIcon, LucideAngularModule, Check } from 'lucide-angular';
+import { wishlistStore } from '../../stores/wishlist.store';
+import { ToastService } from '../../services/taost.service';
 
 @Component({
   selector: 'app-product-details',
-  imports: [RouterLink, ProductCardComponent],
+  imports: [RouterLink, LucideAngularModule, ProductCardComponent],
   templateUrl: './product-details.html',
   styleUrl: './product-details.scss',
 })
 export class ProductDetails implements OnDestroy {
   // Inject the product store to access products, featured products, and selected product
   productStore = inject(productStore);
-
+  wishlistStore = inject(wishlistStore);
   // Inject the cart store to handle adding products to cart
   cartStore = inject(cartStore);
+
+  toast = inject(ToastService);
 
   // Inject ActivatedRoute to access route parameters, e.g., the product ID
   route = inject(ActivatedRoute);
@@ -46,8 +51,18 @@ export class ProductDetails implements OnDestroy {
   // Method to add a product to the cart
   addToCart(product: any) {
     this.cartStore.addToCart(product);
+    this.toast.show(`${product.name} Added To Cart!`, 'success');
   }
-
+  toggleWishlist(product: any) {
+    this.wishlistStore.toggle(product);
+    const isInWishlist = this.wishlistStore.isInWishlist(product);
+    this.toast.show(
+      `${product.name} ${isInWishlist ? 'added to' : 'removed from'} wishlist!`,
+      'success'
+    );
+  }
+  Heart = HeartIcon;
+  Check = Check;
   // Angular lifecycle hook that runs when the component is destroyed
   ngOnDestroy() {
     // Emit a value to destroy$ to signal Observables using takeUntil to unsubscribe

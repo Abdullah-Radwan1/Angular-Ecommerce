@@ -60,6 +60,7 @@ type Product {
   name: String!
   price: Float!
   stripePriceId: String
+  tags: [String!]!
   updatedAt: DateTime!
 }
 

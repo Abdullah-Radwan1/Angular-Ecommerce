@@ -23,6 +23,13 @@ export const appRoutes: Routes = [
     },
   },
   {
+    path: 'wishlist',
+    loadComponent: async () => {
+      const mod = await import('../app/wishlist/wishlist');
+      return mod.WishlistComponent;
+    },
+  },
+  {
     path: 'checkout',
     loadComponent: async () => {
       const mod = await import('../app/checkout/checkout.component');

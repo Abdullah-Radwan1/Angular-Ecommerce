@@ -18,6 +18,9 @@ export class Product {
   @Field()
   image!: string;
 
+  @Field(() => [String]) // ⬅️ هكذا
+  tags!: string[];
+
   @Field({ nullable: true })
   stripePriceId?: string;
 

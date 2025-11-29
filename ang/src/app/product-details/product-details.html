@@ -1,4 +1,4 @@
-<main class="max-w-6xl mx-auto p-6">
+<section class="max-w-5xl mx-auto p-6">
   <!-- Loading state -->
   @if (productStore.loading()) {
   <div class="flex justify-center items-center py-20">
@@ -8,58 +8,79 @@
 
   <!-- Error state -->
   @if (productStore.error()) {
-  <div class="border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-6">
+  <div class="border border-red-600 bg-red-900 text-red-300 px-4 py-3 rounded-lg mb-6 shadow">
     <p>{{ productStore.error() }}</p>
   </div>
   }
 
   <!-- Product details -->
   @if (productStore.selectedProduct()) {
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-    <div class="flex justify-center items-center p-6">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Product Image -->
+    <div class="flex justify-center items-center">
       <img
         [src]="productStore.selectedProduct()?.image"
         [alt]="productStore.selectedProduct()?.name"
-        class="max-h-[450px] rounded-lg"
+        class="object-contain"
       />
     </div>
 
-    <div class="flex flex-col justify-between p-6">
+    <!-- Product Info -->
+    <div class="flex flex-col justify-between gap-4">
       <div>
-        <h1 class="text-3xl font-bold mb-4">
-          {{ productStore.selectedProduct()?.name }}
-        </h1>
-        <p class="leading-relaxed mb-6">
+        <h1 class="text-3xl font-bold mb-4">{{ productStore.selectedProduct()?.name }}</h1>
+        <!-- Price -->
+        <p class="text-2xl font-semibold mb-6">${{ productStore.selectedProduct()?.price }}</p>
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 mb-4">
+          @for (tag of productStore.selectedProduct()?.tags ?? []; track $index) {
+          <span class="px-2 py-1 text-xs rounded-full border border-gray-700">
+            {{ tag }}
+          </span>
+          }
+        </div>
+        <!-- category  -->
+        <div class="text-sm my-4">
+          <span class="font-semibold"> Category: </span>
+          <span class="font-light text-gray-400">{{
+            productStore.selectedProduct()?.Category?.toLowerCase()
+          }}</span>
+        </div>
+        <!-- Description -->
+        <p class="text-sm text-gray-400">
           {{ productStore.selectedProduct()?.description }}
         </p>
-        <p class="text-2xl font-semibold mb-8">${{ productStore.selectedProduct()?.price }}</p>
       </div>
 
-      <div class="flex gap-4">
-        <button
-          class="px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors"
-          (click)="cartStore.addToCart(productStore.selectedProduct()!)"
-        >
-          Add to Cart
-        </button>
-        <button
-          class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-100 transition-colors"
-          [routerLink]="['/products']"
-        >
-          Back to Products
-        </button>
+      <!-- Action Buttons -->
+      <div class="flex gap-3 items-center">
+        <button class="btn" (click)="addToCart(productStore.selectedProduct())">ADD TO CART</button>
+        <button class="bg-black text-white btn" routerLink="/checkout">PROCEED TO CHECKOUT</button>
       </div>
+      <!-- wishlist  -->
+      @let product = productStore.selectedProduct(); @if (product) { @if
+      (!wishlistStore.isInWishlist(product)) {
+      <button (click)="toggleWishlist(product)" class="text-sm flex gap-2 btn">
+        ADD TO WISHLIST 🖤
+      </button>
+      } @else {
+      <button class="text-sm flex gap-2 btn-ghost btn" [routerLink]="['/wishlist']">
+        VIEW MY WISHLIST <lucide-angular [img]="Check"></lucide-angular>
+      </button>
+      } }
     </div>
   </div>
 
-  <!-- related products  -->
-  <div class="text-center my-8">
-    <h2 class="text-2xl font-bold">Related Products</h2>
+  <!-- Related Products -->
+  <div class="text-center my-10">
+    <h2 class="text-2xl font-bold mb-1">Related Products</h2>
+    <p class="text-sm text-gray-400">You might also like</p>
   </div>
+
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
     @for (product of productStore.relatedProducts(); track product.id) {
     <app-product-card (addToCart)="addToCart($event)" [product]="product" />
     }
   </div>
   }
-</main>
+</section>
