@@ -65,11 +65,11 @@ type Product {
 }
 
 type Query {
-  categoryProducts(category: Category!): [Product!]!
+  categoryProducts(category: Category): [Product!]!
   filterdProducts(categories: [String!], maxPrice: Float, minPrice: Float, search: String, sort: String): [Product!]!
   order(id: String!): Order!
   orders: [Order!]!
   product(id: String!): Product!
   products: [Product!]!
-  relatedProducts(Category: Category!): [Product!]!
+  relatedProducts(category: Category!): [Product!]!
 }

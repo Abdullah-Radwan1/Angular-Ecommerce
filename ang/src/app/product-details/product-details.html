@@ -30,7 +30,7 @@
       <div>
         <h1 class="text-3xl font-bold mb-4">{{ productStore.selectedProduct()?.name }}</h1>
         <!-- Price -->
-        <p class="text-2xl font-semibold mb-6">${{ productStore.selectedProduct()?.price }}</p>
+        <p class="text-2xl font-thin mb-6">${{ productStore.selectedProduct()?.price }}</p>
         <!-- Tags -->
         <div class="flex flex-wrap gap-2 mb-4">
           @for (tag of productStore.selectedProduct()?.tags ?? []; track $index) {
@@ -41,13 +41,13 @@
         </div>
         <!-- category  -->
         <div class="text-sm my-4">
-          <span class="font-semibold"> Category: </span>
+          <span> Category: </span>
           <span class="font-light text-gray-400">{{
             productStore.selectedProduct()?.Category?.toLowerCase()
           }}</span>
         </div>
         <!-- Description -->
-        <p class="text-sm text-gray-400">
+        <p class="text-sm text-gray-500">
           {{ productStore.selectedProduct()?.description }}
         </p>
       </div>

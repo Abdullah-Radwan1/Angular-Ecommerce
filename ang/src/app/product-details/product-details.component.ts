@@ -36,7 +36,7 @@ export class ProductDetails implements OnDestroy {
       const id = params.get('id');
 
       this.route.queryParamMap.pipe(takeUntil(this.destroy$)).subscribe((queryParams) => {
-        const Category = queryParams.get('Category') || 'PERFUMES';
+        const Category = queryParams.get('Category') || 'CHAIRS';
         if (id && Category) {
           this.productStore.clearSelectedProduct();
           this.productStore.loadProductById(id);

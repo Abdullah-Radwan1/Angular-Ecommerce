@@ -34,7 +34,7 @@ export class Sidebar implements OnInit {
   sortOption: SortOption = 'price-low-high';
   selectedCategories: string[] = [];
 
-  categories = ['PERFUMES', 'SNEAKERS', 'ACCESSORIES', 'ELECTRONICS', 'HOODIES'];
+  categories = ['CHAIRS', 'CLOCKS', 'LAMPS', 'TABLES', 'ACCESSORIES'];
 
   ngOnInit() {
     // ✅ Load all products once

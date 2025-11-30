@@ -23,6 +23,13 @@ export const appRoutes: Routes = [
     },
   },
   {
+    path: 'about',
+    loadComponent: async () => {
+      const mod = await import('../app/about/about.component');
+      return mod.AboutComponent;
+    },
+  },
+  {
     path: 'wishlist',
     loadComponent: async () => {
       const mod = await import('../app/wishlist/wishlist');

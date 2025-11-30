@@ -54,7 +54,7 @@ const GET_PRODUCT_BY_ID = gql`
 `;
 const GET_RELATED_PRODUCTS = gql`
   query relatedProducts($category: Category!) {
-    relatedProducts(Category: $category) {
+    relatedProducts(category: $category) {
       name
       id
       name
@@ -65,7 +65,16 @@ const GET_RELATED_PRODUCTS = gql`
     }
   }
 `;
-
+const GET_CATEGORY_PRODUCTS = gql`
+  query categoryProducts($category: Category) {
+    categoryProducts(category: $category) {
+      id
+      name
+      price
+      image
+    }
+  }
+`;
 const GET_FILTERD_PRODUCTS = gql`
   query filterdProducts(
     $minPrice: Float
@@ -84,8 +93,8 @@ const GET_FILTERD_PRODUCTS = gql`
       id
       name
       price
-      Category
       image
+      Category
     }
   }
 `;
@@ -94,17 +103,17 @@ export interface ProductState {
   products: ProductDto[];
   featuredProducts: featuredDto[];
   relatedProducts: ProductDto[];
+  categoryProducts: ProductDto[];
   loading: boolean;
   error: string | null;
-  selectedProduct: ProductDto | null; // ✅ new
+  selectedProduct: ProductDto | null;
 }
 const initialState: ProductState = {
   products: [],
   relatedProducts: [],
   featuredProducts: [],
-
-  selectedProduct: null, // ✅ initialize
-
+  categoryProducts: [],
+  selectedProduct: null,
   loading: false,
   error: null,
 };
@@ -127,6 +136,24 @@ export const productStore = signalStore(
         )
         .subscribe();
     },
+    loadCategoryproducts: (category: string) => {
+      const variables =
+        category && category !== 'ALL'
+          ? { category } // send category ONLY if valid
+          : {}; // send nothing
+      patchState(store, { loading: true, error: null });
+      apollo
+        .watchQuery<{ categoryProducts: ProductDto[] }>({
+          query: GET_CATEGORY_PRODUCTS,
+          variables,
+        })
+        .valueChanges.pipe(
+          map(({ data }) => {
+            patchState(store, { products: data.categoryProducts, loading: false });
+          })
+        )
+        .subscribe();
+    },
 
     loadProductById: (id: string) => {
       patchState(store, { loading: true, error: null });
@@ -134,7 +161,6 @@ export const productStore = signalStore(
         .query<{ product: ProductDto }>({ query: GET_PRODUCT_BY_ID, variables: { id } })
         .pipe(
           map(({ data }) => {
-            console.log(data);
             patchState(store, {
               error: null,
               loading: false,
@@ -157,7 +183,7 @@ export const productStore = signalStore(
       apollo
         .query<{ relatedProducts: ProductDto[] }>({
           query: GET_RELATED_PRODUCTS,
-          variables: { category }, // e.g., "PERFUMES"
+          variables: { category },
         })
         .pipe(
           map(({ data }) => {

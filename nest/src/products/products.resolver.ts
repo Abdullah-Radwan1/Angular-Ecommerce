@@ -29,8 +29,17 @@ export class ProductsResolver {
 
   @Query(() => [Product], { name: 'categoryProducts' })
   categoryProducts(
-    @Args('category', { type: () => Category }) category: Category,
+    @Args('category', { type: () => Category, nullable: true })
+    category?: Category,
   ) {
+    // لو مبعتش category → رجع أي 8 products
+    if (!category) {
+      return this.Prisma.product.findMany({
+        take: 8,
+      });
+    }
+
+    // لو category موجودة → رجع حسب الفلترة
     return this.Prisma.product.findMany({
       where: { Category: category },
       take: 8,
@@ -40,7 +49,7 @@ export class ProductsResolver {
   // ✅ Use GraphQL enum type instead of string
   @Query(() => [Product], { name: 'relatedProducts' })
   relatedProducts(
-    @Args('Category', { type: () => PrismaCategory }) Category: PrismaCategory, // use enum
+    @Args('category', { type: () => PrismaCategory }) Category: PrismaCategory, // use enum
   ) {
     return this.Prisma.product.findMany({
       where: { Category: Category },

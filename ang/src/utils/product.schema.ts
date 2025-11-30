@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const ProductCategory = z.enum(['PERFUMES', 'BODY_SPRAY', 'AIR_FRESHENER']);
+const ProductCategory = z.enum(['CHAIRS', 'CLOCKS', 'LAMPS', 'TABLES', 'ACCESSORIES']);
 
 const ProductSchema = z.object({
   id: z.string().uuid(),
